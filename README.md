@@ -1,6 +1,5 @@
 # FasTeX
-A custom installer for TeX Live
-
+<h2>A custom installer for TeX Live</h2>
 
 <img src="https://github.com/ivalb/FasTeX/blob/master/FasTeX-Linux/fastex-icon.svg" width="150" align="center"> 
 
@@ -9,3 +8,18 @@ FasTeX is a custom installer for the TeX Live distribution, which aims to make a
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+<h2>Installation instructions</h2>
+
+(1) Download the repository from GitHub. Unzip the folder and open a Terminal window.
+(2) Move inside the downloaded folder:
+    #
+    #   cd path/to/FasTeX-Master
+    #
+    Yo can renam the folder if you prefer.
+(3) Run the installer:
+    #
+    #   sh isntall-fastex.sh
+    #
+
+
