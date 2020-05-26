@@ -13,11 +13,9 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OU
 
 (1) Download the repository from GitHub. Unzip the folder and open a Terminal window.
 
-(2) Move inside the downloaded folder:
+(2) Move inside the downloaded folder (You can renam the folder if you prefer):
 
       cd path/to/FasTeX-Master
-
-    Yo can renam the folder if you prefer.
 
 (3) Run the installer:
     
