@@ -12,14 +12,16 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OU
 <h2>Installation instructions</h2>
 
 (1) Download the repository from GitHub. Unzip the folder and open a Terminal window.
+
 (2) Move inside the downloaded folder:
-    #
-    #   cd path/to/FasTeX-Master
-    #
+
+      cd path/to/FasTeX-Master
+
     Yo can renam the folder if you prefer.
+
 (3) Run the installer:
-    #
-    #   sh isntall-fastex.sh
-    #
+    
+      sh isntall-fastex.sh
+    
 
 
