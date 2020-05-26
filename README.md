@@ -1,4 +1,9 @@
 # FasTeX
+
+<p align="center">
+  <img src="https://github.com/ivalb/FasTeX/blob/master/FasTeX-Linux/fastex-icon.svg" width="350" title="hover text">
+</p>
+
 A custom installer for TeX Live
 
 FasTeX is a custom installer for the TeX Live distribution, which aims to make available, in a short time and in a small space, a lightweight distribution suitable for most users. It omits documentation and sources, 
