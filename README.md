@@ -4,7 +4,7 @@
 <h2>A custom installer for TeX Live</h2>
 
 
- <table>
+ <table cellspacing="0" cellpadding="0">
   <tr>
     <th width="600" align=justify>FasTeX is a custom installer for the TeX Live distribution, which aims to make available, in a short time and in a small space, a lightweight distribution suitable for most users. It omits documentation and sources, and allows you to choose whether or not to install some packages, depending on your needs. You can anyway install additional packages whenever you want, using TeX Live Manager or TeX Live Shell.</th>
     <th><img src="https://github.com/ivalb/FasTeX/blob/master/FasTeX-Linux/fastex-icon.svg" width="150" align="center"> </th>
