@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=TLMGRbase
+Exec=<BASE>/bin/x86_64-linux/tlmgr -gui
+Comment=
+Terminal=false
+Type=Application
