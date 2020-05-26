@@ -20,6 +20,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OU
 (3) Run the installer:
     
       sh isntall-fastex.sh
+
+(4) Follow the instructions and make your choice!
     
 
 
