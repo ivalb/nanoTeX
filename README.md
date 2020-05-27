@@ -26,4 +26,6 @@ Installation instructions (Linux)
 (4) Follow the instructions and make your choice!
     
 
+Installation instructions (Windows)... Forthcoming
+-------------------------------------
 
