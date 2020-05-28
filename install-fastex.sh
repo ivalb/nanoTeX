@@ -69,7 +69,10 @@ tar -C $baseyear --strip-components=1 -xzf install-tl-unx.tar.gz
 #----------------------------------------------------
 # Copy the auxiliary files in the installation directory:
 #----------------------------------------------------
-cp auxfiles/* $baseyear
+cp *.txt $baseyear
+cp fastex.profile.linux $baseyear
+cp TLMGRbase.desktop $baseyear
+cp fastex-icon-2020.svg $baseyear
 cp fastex-icon.svg $basedoc
 #----------------------------------------------------
 # Move to the installation directory:
@@ -189,8 +192,9 @@ gio set -t string $base metadata::custom-icon file://$basedoc/fastex-icon.svg
 
 cd $base
 if [ $base = `pwd` ]]; then
-rm -rf auxfiles
 rm -f fastex-icon.svg
+rm *.txt
+rm fastex.profile.linux
 #rm -rf install-tl*
 #rm -f install-*
 fi

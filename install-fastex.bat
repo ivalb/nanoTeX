@@ -36,9 +36,9 @@ move tlpkg %CURRDIR%
 move texmf-dist %CURRDIR%
 cd ..
 
-cd auxfiles
-move * %CURRDIR%
-cd ..
+rem cd auxfiles
+rem move * %CURRDIR%
+rem cd ..
 
 rem ---------------------------------------------------------
 rem Create the fastex.profile file from fastex.profile.win:
@@ -121,7 +121,7 @@ del pkgs-*
 rmdir /s /q tlpkg
 rmdir /s /q texmf-dist
 del fastex.profile.win
-rmdir /s /q auxfiles
+rem rmdir /s /q auxfiles
 for /d %%G in ("install-tl-*") do rmdir /s /q "%%~G"
 
 echo ##############################
