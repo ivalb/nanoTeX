@@ -17,18 +17,14 @@ SOFTWARE.
 (A) Installation files
 ----------------------
     install-fastex.sh
-    fastex.profile.base
-    pkgs-languages.txt
-    pkgs-minimal.txt 
-    pkgs-suftesi.txt
-    TLMGRbase.desktop
+    install-fastex.bat
 
 (B) Logos files
 ---------------------
-    fastex-icon.svg
-    fastex-icon-*.svg (where * is 2020, 2021, ecc.)
+    fastex-icon*.svg
+    fastex-icon*.ico
 
 Ivan Valbusa
-Verona, 2020/05/18
+Verona, 2020/05/28
 
 
