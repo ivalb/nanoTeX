@@ -1,4 +1,4 @@
-<img src="https://github.com/ivalb/FasTeX/blob/master/FasTeX-Linux/fastex-icon.svg" width="150" align="center">
+<img src="https://github.com/ivalb/FasTeX/blob/master/fastex-icon.svg" width="150" align="center">
 
 A custom installer for TeX Live
 --------------------------------
