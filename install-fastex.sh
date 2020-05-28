@@ -76,10 +76,10 @@ cp fastex-icon.svg $basedoc
 #----------------------------------------------------
 cd $baseyear
 #----------------------------------------------------
-# Edit and rename fastex.profile.base:
+# Edit and rename fastex.profile.linux:
 #----------------------------------------------------
-perl -i -pe "s{<BASE>}{$baseyear}" fastex.profile.base
-mv fastex.profile.base fastex.profile
+perl -i -pe "s{<BASE>}{$baseyear}" fastex.profile.linux
+mv fastex.profile.linux fastex.profile
 #----------------------------------------------------
 # Create /user and /share directories
 #----------------------------------------------------
@@ -99,7 +99,7 @@ export PATH=$baseyear/bin/$plat:$PATH
 #----------------------------------------------------
 echo "# Installing a minimal set of packages. This process can take several minutes depending on your connection speed."; sleep 1
 #tlmgr install latex-bin 
-tlmgr install $(cat pkgs-minimal.txt | tr '\n' ' ')
+tlmgr install latex-bin luahbtex tlshell $(cat pkgs-minimal.txt | tr '\n' ' ')
 tlmgr install $(cat pkgs-languages.txt | tr '\n' ' ')
 #----------------------------------------------------
 # Installing greek support

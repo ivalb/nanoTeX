@@ -1,0 +1,6 @@
+babel-english
+hyphen-english
+babel-italian
+hyphen-italian
+fixltxhyph
+
