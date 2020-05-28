@@ -5,12 +5,11 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="24.985394mm"
-   height="20.655083mm"
-   viewBox="0 0 24.985393 20.655083"
+   width="30.547661mm"
+   height="28.891832mm"
+   viewBox="0 0 30.54766 28.891833"
    version="1.1"
    id="svg8"
    inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
@@ -20,35 +19,55 @@
    inkscape:export-ydpi="198">
   <defs
      id="defs2">
-    <linearGradient
-       id="linearGradient870"
-       inkscape:collect="always">
-      <stop
-         id="stop866"
-         offset="0"
-         style="stop-color:#dacf2f;stop-opacity:1;" />
-      <stop
-         id="stop868"
-         offset="1"
-         style="stop-color:#dacf2f;stop-opacity:0;" />
-    </linearGradient>
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lend"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path875"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Send"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Send"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path887"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         transform="matrix(-0.2,0,0,-0.2,-1.2,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lstart"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lstart"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path872"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         transform="matrix(0.8,0,0,0.8,10,0)" />
+    </marker>
     <inkscape:perspective
        sodipodi:type="inkscape:persp3d"
-       inkscape:vp_x="-15.084813 : -130.4134 : 1"
-       inkscape:vp_y="0 : 952.77156 : 0"
-       inkscape:vp_z="194.91516 : -130.4134 : 1"
-       inkscape:persp3d-origin="89.915186 : -177.57559 : 1"
+       inkscape:vp_x="-15.084813 : -122.17664 : 1"
+       inkscape:vp_y="0 : 952.77152 : 0"
+       inkscape:vp_z="194.91516 : -122.17664 : 1"
+       inkscape:persp3d-origin="89.915185 : -169.33883 : 1"
        id="perspective965" />
-    <linearGradient
-       gradientTransform="matrix(0.73422844,0,0,1.3691269,-173.78769,-151.93087)"
-       gradientUnits="userSpaceOnUse"
-       y2="142.07304"
-       x2="54.966724"
-       y1="142.07304"
-       x1="30.271343"
-       id="linearGradient872"
-       xlink:href="#linearGradient870"
-       inkscape:collect="always" />
   </defs>
   <sodipodi:namedview
      fit-margin-bottom="0"
@@ -61,9 +80,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="3.2278334"
-     inkscape:cx="45.347502"
-     inkscape:cy="47.406911"
+     inkscape:zoom="3.0416578"
+     inkscape:cx="46.947199"
+     inkscape:cy="55.438903"
      inkscape:document-units="mm"
      inkscape:current-layer="g2044"
      inkscape:document-rotation="0"
@@ -76,7 +95,7 @@
      inkscape:window-y="0"
      inkscape:window-maximized="0">
     <sodipodi:guide
-       position="2.8543771,7.9697948"
+       position="6.0413799,13.186515"
        orientation="1,0"
        id="guide999" />
   </sodipodi:namedview>
@@ -93,7 +112,7 @@
     </rdf:RDF>
   </metadata>
   <g
-     transform="translate(-30.294955,-131.71542)"
+     transform="translate(-27.107952,-128.69539)"
      inkscape:label="Livello 1"
      inkscape:groupmode="layer"
      id="layer1">
@@ -106,17 +125,17 @@
            transform="translate(0.20250507,0.74795216)"
            style="stroke:#000000;stroke-opacity:1">
           <g
-             id="g892">
-            <rect
-               style="fill:url(#linearGradient872);fill-opacity:1;stroke:#c1c1c1;stroke-width:0.121901;stroke-dashoffset:9.69071;stroke-opacity:1"
-               id="rect864"
-               width="18.132051"
-               height="24.863493"
-               x="-151.5616"
-               y="30.1534"
-               transform="rotate(-90)" />
+             id="g962">
+            <ellipse
+               transform="rotate(-141.89734)"
+               ry="13.9296"
+               rx="13.929599"
+               cy="-85.578781"
+               cx="-122.17477"
+               id="path870"
+               style="opacity:0.609564;fill:#ffffff;stroke:#000000;stroke-width:0.397;stroke-miterlimit:4;stroke-dasharray:1.588, 1.588;stroke-dashoffset:0;stroke-opacity:1;marker-start:url(#Arrow1Lstart);marker-end:url(#Arrow1Lend)" />
             <g
-               transform="translate(0.65455022,0.31046083)"
+               transform="translate(0.76863434,0.58793835)"
                id="g915">
               <g
                  transform="translate(0.72891067,4.2333335)"
@@ -181,11 +200,6 @@
                    id="path2028" />
               </g>
             </g>
-            <path
-               id="rect874"
-               style="opacity:0.61;fill:#e0e1f3;stroke:#c1c1c1;stroke-width:0.0552117;stroke-dashoffset:9.69071;stroke-opacity:1"
-               d="m 30.153414,132.29641 1.28188,-0.036 -0.01158,-1.14363 11.448342,-0.12163 2.277391,1.2813 9.867432,0.0198 v 1.13311 H 30.153414 Z"
-               sodipodi:nodetypes="ccccccccc" />
           </g>
         </g>
       </g>
