@@ -26,6 +26,12 @@ Installation instructions (Linux)
 (4) Follow the instructions and make your choice!
     
 
-Installation instructions (Windows)... Forthcoming
+Installation instructions (Windows)
 -------------------------------------
+
+(1) Download the repository from GitHub. Unzip the folder and open a Command Prompt window. Powershell is required.
+
+(2) Move inside the downloaded folder and double click on fastax-install-windows.bat
+
+(4) Follow the instructions and make your choice!
 
