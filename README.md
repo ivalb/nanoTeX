@@ -10,6 +10,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+Acknowledgments
+-------------------------------------
+Thanks to Luigi Scarso and Massimiliano Dominici for their availability. In particular, I would like to remind you that the initial installer code for Linux was written by Luigi Scarso.  I would also like to express my special thanks to Tommaso Gordini, who has tested both installers, and particularly the one for Windows.
+
 Installation instructions (Linux)
 -------------------------------------
 
@@ -26,7 +30,7 @@ Installation instructions (Linux)
 (4) Follow the instructions and make your choice!
     
 
-Installation instructions (Windows)
+Installation instructions (Windows) !Note that this installer is not optimized at all, even if it seems to work!
 -------------------------------------
 
 (1) Download the repository from GitHub. Unzip the folder and open a Command Prompt window. Powershell is required.
