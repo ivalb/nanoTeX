@@ -26,12 +26,10 @@ alias zeni='zenity --info --width=500 --height=300 --title="FasTeX $year Install
 #----------------------------------------------------
 # If ~/fastex/$year exists:
 #(
-zenq --ok-label="Current Directory?" --cancel-label="Home Directory?" --text="Where do you want to install Fastex?"
+zenq --ok-label="Current Directory" --cancel-label="Home Directory" --text="Where do you want to install Fastex?"
 if [ $? = 0 ]  ;then
-echo "# Installing in Current directory"; sleep 1
 base=`pwd`
 else
-echo "# Installing in Home directory"; sleep 1
 base=$HOME/fastex
 fi
 baseyear=$base/$year
@@ -45,14 +43,13 @@ By pressing 'YES' the folder will be overwritten and all its contents will be lo
 Do you want to procede?"
 # If 'YES':
   if [ $? = 0 ]  ;then
-echo "# Checking installation directory..."; sleep 1
     rm -r $baseyear
     rm -rf $basedoc
     mkdir -p $baseyear
     mkdir -p $basedoc
 # If 'NO':
   else
-zeni --text="You have chosen to exit the installation.\n\n\n\n\ GOODBYE!!!"
+echo "# You have chosen to exit the installation.\n\n\n\n\ GOODBYE!!!"; sleep 1
   exit
 fi
 else
@@ -93,7 +90,7 @@ mkdir share
 #                  INSTALLATION
 #
 #####################################################
-echo "# Installing TeX Live infrastructure. This process can take several minutes depending on your connection speed."; sleep 1
+echo "# Installing TeX Live infrastructure. This process can take several minutes depending on your connection speed.";sleep 1
 plat=`./install-tl -print-platform`
 ./install-tl -no-gui -profile=./fastex.profile
 export PATH=$baseyear/bin/$plat:$PATH
@@ -198,8 +195,10 @@ rm Desktop.ini
 rm *.txt
 rm fastex.profile.*
 rm install-*
-rm wget-log
+rm -f wget-log
 rm TLMGRbase.desktop
+rm -r .git
+rm .gitignore
 fi
 
 echo "# Finishing installation"; sleep 2
