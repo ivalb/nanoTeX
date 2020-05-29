@@ -1,7 +1,5 @@
 @echo off
 
-where /q powershell || echo powershell not found && exit /b
-
 rem ---------------------------------------------------------
 rem Set the variable for the installation directory
 rem ---------------------------------------------------------
