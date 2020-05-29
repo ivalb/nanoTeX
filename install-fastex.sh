@@ -36,7 +36,7 @@ base=$HOME/fastex
 fi
 baseyear=$base/$year
 basedoc=$base/doc
-basepath=fastex/$year/bin
+basepath=$base/$year/bin
 
 if [ -d "$baseyear" ]; then
 zenq --text="A folder '$baseyear already exists.\n\
@@ -192,11 +192,14 @@ gio set -t string $base metadata::custom-icon file://$basedoc/fastex-icon.svg
 
 cd $base
 if [ $base = `pwd` ]]; then
-rm -f fastex-icon.svg
+rm fastex-icon.svg
+rm fastex-icon.ico
+rm Desktop.ini
 rm *.txt
-rm fastex.profile.linux
-#rm -rf install-tl*
-#rm -f install-*
+rm fastex.profile.*
+rm install-*
+rm wget-log
+rm TLMGRbase.desktop
 fi
 
 echo "# Finishing installation"; sleep 2
