@@ -1,5 +1,17 @@
 @echo off
 
+rem     ------------------------------------------------------------------------------
+rem     This is file install-fastex.bat, version 0.1 beta 2020-05-26
+rem
+rem     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+rem     IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+rem     FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+rem     AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+rem     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+rem     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+rem     SOFTWARE.
+rem     ------------------------------------------------------------------------------
+
 rem ---------------------------------------------------------
 rem Set the variable for the installation directory
 rem ---------------------------------------------------------
