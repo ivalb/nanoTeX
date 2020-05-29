@@ -1,4 +1,4 @@
-<p><a href="https://github.com/ivalb/FasTeX"><img src="https://github.com/ivalb/FasTeX/blob/master/fastex-icon.svg" alt="FasTeX logo" align="right" width="320px" style="max-width:100%;"></a></p>
+<p><a href="https://github.com/ivalb/FasTeX"><img src="https://github.com/ivalb/FasTeX/blob/master/fastex-icon.svg" alt="FasTeX logo" align="right" width="350px" style="max-width:100%;"></a></p> 
 
 A custom installer for TeX Live - Beta version for testing only
 --------------------------------
