@@ -2,4 +2,5 @@ tools
 carlisle?
 fix2col
 ltxmisc?
+imakeidx
 
