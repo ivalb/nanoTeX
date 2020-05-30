@@ -1,3 +1,4 @@
+fontsize
 etoolbox
 xkeyval
 geometry
@@ -15,3 +16,13 @@ csquotes
 natbib
 amsmath
 imakeidx
+cochineal
+textcomp
+inconsolata
+biolinum
+newtx
+pdfpages
+amsmath
+appendix
+
+
