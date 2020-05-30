@@ -95,35 +95,18 @@ plat=`./install-tl -print-platform`
 ./install-tl -no-gui -profile=./fastex.profile
 export PATH=$baseyear/bin/$plat:$PATH
 #----------------------------------------------------
-# Install a minimal set of packages:
+# Install a minimal set of packages
 #----------------------------------------------------
+cat pkgs-minimal.txt pkgs-languages.txt pkgs-classes.txt pkgs-mathematics.txt > pkgs-all.txt
 echo "# Installing a minimal set of packages. This process can take several minutes depending on your connection speed."
-#tlmgr install latex-bin 
-tlmgr install latex-bin luahbtex tlshell $(cat pkgs-minimal.txt | tr '\n' ' ')
-tlmgr install $(cat pkgs-languages.txt | tr '\n' ' ')
+tlmgr install latex-bin luahbtex tlshell $(cat pkgs-all.txt | tr '\n' ' ')
 #----------------------------------------------------
-# Installing greek support
+# Installing suftesi
 #----------------------------------------------------
-zenq --text="Do you want to install some basic packages to typeset advanced greek?"
+zenq --text="Do you want to install the suftesi class?"
 if [ $? = 0 ]  ;then
-echo "# Installing advanced greek support. This process can take several minutes depending on your connection speed."
-tlmgr install $(cat pkgs-greek.txt | tr '\n' ' ')
-fi
-#----------------------------------------------------
-# Installing some non standard classes
-#----------------------------------------------------
-zenq --text="Do you want to install some non-standard document classes?"
-if [ $? = 0 ]  ;then
-echo "# Installing some non-standard classes. This process can take several minutes depending on your connection speed."
-tlmgr install $(cat pkgs-classes.txt | tr '\n' ' ')
-fi
-#----------------------------------------------------
-# Installing mathematical support
-#----------------------------------------------------
-zenq --text="Do you want to install some basic packages to typeset mathematics?"
-if [ $? = 0 ]  ;then
-echo "# Installing mathematical support. This process can take several minutes depending on your connection speed."
-tlmgr install $(cat pkgs-mathematics.txt | tr '\n' ' ')
+echo "# Installing suftesi class. This process can take several minutes depending on your connection speed."
+tlmgr install $(cat pkgs-suftesi.txt | tr '\n' ' ')
 fi
 #----------------------------------------------------
 # Remove auxiliary files:

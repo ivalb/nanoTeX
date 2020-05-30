@@ -1,3 +1,4 @@
+frontespizio
 fontsize
 etoolbox
 xkeyval
@@ -21,6 +22,7 @@ textcomp
 inconsolata
 biolinum
 newtx
+newpx
 pdfpages
 amsmath
 appendix

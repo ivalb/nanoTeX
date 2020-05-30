@@ -1,3 +1,0 @@
-cbfonts
-cbfonts-fd
-

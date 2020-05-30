@@ -1,13 +1,6 @@
 amscls
 memoir
-suftesi
-cclicenses
-crop
-substitutefont
-newpx
-libertine
-libertinegc
-bera
-mathpazo
-libertinust1math
-luatex85
+toptesi
+beamer
+sapthesis
+

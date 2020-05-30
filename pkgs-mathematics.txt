@@ -1,3 +1,4 @@
+amsfonts
 amssymb
 amsthm
 mathalpha
