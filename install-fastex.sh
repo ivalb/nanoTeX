@@ -49,7 +49,7 @@ Do you want to procede?"
     mkdir -p $basedoc
 # If 'NO':
   else
-echo "# You have chosen to exit the installation.\n\n\n\n\ GOODBYE!!!"; sleep 1
+zeni --text="You have chosen to exit the installation.\n\n\n\n\ GOODBYE!!!"
   exit
 fi
 else
@@ -60,7 +60,7 @@ fi
 #----------------------------------------------------
 # Download the installer from the nearest CTAN mirror: 
 #----------------------------------------------------
-echo "# Downloading the installer from a CTAN mirror..."; sleep 1
+echo "# Downloading the installer from a CTAN mirror..."
 wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
 tar -C $baseyear --strip-components=1 -xzf install-tl-unx.tar.gz
 #----------------------------------------------------
@@ -90,14 +90,14 @@ mkdir share
 #                  INSTALLATION
 #
 #####################################################
-echo "# Installing TeX Live infrastructure. This process can take several minutes depending on your connection speed.";sleep 1
+echo "# Installing TeX Live infrastructure. This process can take several minutes depending on your connection speed."
 plat=`./install-tl -print-platform`
 ./install-tl -no-gui -profile=./fastex.profile
 export PATH=$baseyear/bin/$plat:$PATH
 #----------------------------------------------------
 # Install a minimal set of packages:
 #----------------------------------------------------
-echo "# Installing a minimal set of packages. This process can take several minutes depending on your connection speed."; sleep 1
+echo "# Installing a minimal set of packages. This process can take several minutes depending on your connection speed."
 #tlmgr install latex-bin 
 tlmgr install latex-bin luahbtex tlshell $(cat pkgs-minimal.txt | tr '\n' ' ')
 tlmgr install $(cat pkgs-languages.txt | tr '\n' ' ')
@@ -106,7 +106,7 @@ tlmgr install $(cat pkgs-languages.txt | tr '\n' ' ')
 #----------------------------------------------------
 zenq --text="Do you want to install some basic packages to typeset advanced greek?"
 if [ $? = 0 ]  ;then
-echo "# Installing advanced greek support. This process can take several minutes depending on your connection speed."; sleep 1
+echo "# Installing advanced greek support. This process can take several minutes depending on your connection speed."
 tlmgr install $(cat pkgs-greek.txt | tr '\n' ' ')
 fi
 #----------------------------------------------------
@@ -114,7 +114,7 @@ fi
 #----------------------------------------------------
 zenq --text="Do you want to install some non-standard document classes?"
 if [ $? = 0 ]  ;then
-echo "# Installing some non-standard classes. This process can take several minutes depending on your connection speed."; sleep 1
+echo "# Installing some non-standard classes. This process can take several minutes depending on your connection speed."
 tlmgr install $(cat pkgs-classes.txt | tr '\n' ' ')
 fi
 #----------------------------------------------------
@@ -122,17 +122,13 @@ fi
 #----------------------------------------------------
 zenq --text="Do you want to install some basic packages to typeset mathematics?"
 if [ $? = 0 ]  ;then
-echo "# Installing mathematical support. This process can take several minutes depending on your connection speed."; sleep 1
+echo "# Installing mathematical support. This process can take several minutes depending on your connection speed."
 tlmgr install $(cat pkgs-mathematics.txt | tr '\n' ' ')
 fi
 #----------------------------------------------------
 # Remove auxiliary files:
 #----------------------------------------------------
-rm pkgs-minimal.txt 
-rm pkgs-languages.txt
-rm pkgs-greek.txt
-rm pkgs-classes.txt
-rm pkgs-mathematics.txt
+rm pkgs-*.txt 
 rm fastex.profile
 rm install-tl
 #####################################################
@@ -140,7 +136,7 @@ rm install-tl
 #                PATH SETTING
 #
 #####################################################
-echo "# Path settings."; sleep 1
+echo "# Path settings."
 TEXT="PATH=$baseyear/bin/$plat:\$PATH"
 if [ -f $HOME/.bash_aliases ]; then
 zenq --text="The .bash_aliases file in your Home will be edited.\n\n\
@@ -169,7 +165,7 @@ fi
 #####################################################
 File=/etc/lsb-release
 if grep -q Mint "$File"; then
-echo "# Creating a TeX Live Manager launcher"; sleep 1
+echo "# Creating a TeX Live Manager launcher"
 zenq --text="You are installing on Linux Mint. A TeX Live Manager launcher can be created in the $baseyear folder. Do you want to proceed?"
   if [ $? = 0 ]  ;then
 perl -i -pe "s{<BASE>}{$baseyear}" TLMGRbase.desktop
@@ -181,7 +177,7 @@ fi
 #                SET FOLDER ICON
 #
 #####################################################
-echo "# Setting the fodler icon"; sleep 1
+echo "# Setting the fodler icon"
 cd ..
 gio set -t string $year metadata::custom-icon file://$baseyear/fastex-icon-$year.svg
 cd ..
@@ -189,20 +185,20 @@ gio set -t string $base metadata::custom-icon file://$basedoc/fastex-icon.svg
 
 cd $base
 if [ $base = `pwd` ]]; then
-rm fastex-icon.svg
-rm fastex-icon.ico
-rm Desktop.ini
-rm *.txt
-rm fastex.profile.*
-rm install-*
+rm -f fastex-icon.svg
+rm -f fastex-icon.ico
+rm -f Desktop.ini
+rm -f *.txt
+rm -f fastex.profile.*
+rm -f install-*
 rm -f wget-log
-rm TLMGRbase.desktop
-rm -r .git
-rm .gitignore
+rm -f TLMGRbase.desktop
+rm -rf .git
+rm -f .gitignore
 fi
 
-echo "# Finishing installation"; sleep 2
-echo "# Fastex $year successfully installed!"; sleep 0
+echo "# Finishing installation"
+echo "# Fastex $year successfully installed!"
 
 #) |
 #zenity --progress \
