@@ -1,7 +1,7 @@
 @echo off
 
 rem     ------------------------------------------------------------------------------
-rem     This is file install-fastex.bat, version 0.1 beta 2020-05-26
+rem     This is file install-nanotex.bat, version 0.1 beta 2020-05-26
 rem
 rem     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 rem     IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -51,10 +51,10 @@ rem move * %CURRDIR%
 rem cd ..
 
 rem ---------------------------------------------------------
-rem Create the fastex.profile file from fastex.profile.win:
+rem Create the nanotex.profile file from nanotex.profile.win:
 rem ---------------------------------------------------------
-powershell -Command "(gc fastex.profile.win) -replace '<BASE>', '%base%' | Out-File -encoding ASCII fastex.profile"
-powershell -Command "(gc fastex.profile) -replace '\\', '/' | Out-File -encoding ASCII fastex.profile"
+powershell -Command "(gc nanotex.profile.win) -replace '<BASE>', '%base%' | Out-File -encoding ASCII nanotex.profile"
+powershell -Command "(gc nanotex.profile) -replace '\\', '/' | Out-File -encoding ASCII nanotex.profile"
 
 echo ###Installation directory ready
 
@@ -66,7 +66,7 @@ rem ---------------------------------------------------------
 rem Install the TeXLive infrastructure:
 rem ---------------------------------------------------------
 @echo on
-@echo | install-tl-windows.bat -no-gui -profile=fastex.profile
+@echo | install-tl-windows.bat -no-gui -profile=nanotex.profile
 @echo off
 
 rem ---------------------------------------------------------
@@ -126,17 +126,17 @@ rem ---------------------------------------------------------
 
 del install-tl.*
 del install-tl-windows.*
-del fastex.profile
+del nanotex.profile
 del pkgs-*
 rmdir /s /q tlpkg
 rmdir /s /q texmf-dist
-del fastex.profile.win
+del nanotex.profile.win
 rem rmdir /s /q auxfiles
 for /d %%G in ("install-tl-*") do rmdir /s /q "%%~G"
 
 echo ##############################
 echo .                            .
-echo FasTeX installed successfully!
+echo nanoTeX installed successfully!
 echo .                            .
 echo ##############################
 

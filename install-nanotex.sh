@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# This is file install-fastex.sh, version 0.1 beta 2020-05-26
+# This is file install-nanotex.sh, version 0.1 beta 2020-05-26
 #
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -19,18 +19,18 @@
 # Set the variable for the installation directory
 #----------------------------------------------------
 year=2020
-alias zenq='zenity --question --icon-name=info --width=500 --height=300 --title="FasTeX $year Installation" --ok-label="YES" --cancel-label="NO"'
-alias zeni='zenity --info --width=500 --height=300 --title="FasTeX $year Installation"'
+alias zenq='zenity --question --icon-name=info --width=500 --height=300 --title="nanoTeX $year Installation" --ok-label="YES" --cancel-label="NO"'
+alias zeni='zenity --info --width=500 --height=300 --title="nanoTeX $year Installation"'
 #----------------------------------------------------
 # Create the installation direcotry
 #----------------------------------------------------
-# If ~/fastex/$year exists:
+# If ~/nanotex/$year exists:
 #(
-zenq --ok-label="Current Directory" --cancel-label="Home Directory" --text="Where do you want to install Fastex?"
+zenq --ok-label="Current Directory" --cancel-label="Home Directory" --text="Where do you want to install nanoTeX?"
 if [ $? = 0 ]  ;then
 base=`pwd`
 else
-base=$HOME/fastex
+base=$HOME/nanotex
 fi
 baseyear=$base/$year
 basedoc=$base/doc
@@ -38,7 +38,7 @@ basepath=$base/$year/bin
 
 if [ -d "$baseyear" ]; then
 zenq --text="A folder '$baseyear already exists.\n\
-You are probably attempting to reinstall FasTeX $year.\n\
+You are probably attempting to reinstall nanoTeX $year.\n\
 By pressing 'YES' the folder will be overwritten and all its contents will be lost. By clicking on "NO" the installation process will be terminated.\n\n\
 Do you want to procede?"
 # If 'YES':
@@ -53,7 +53,7 @@ zeni --text="You have chosen to exit the installation.\n\n\n\n\ GOODBYE!!!"
   exit
 fi
 else
-# If ~/fastex/$year does not exist:
+# If ~/nanotex/$year does not exist:
   mkdir -p $baseyear
   mkdir -p $basedoc
 fi
@@ -67,19 +67,19 @@ tar -C $baseyear --strip-components=1 -xzf install-tl-unx.tar.gz
 # Copy the auxiliary files in the installation directory:
 #----------------------------------------------------
 cp *.txt $baseyear
-cp fastex.profile.linux $baseyear
+cp nanotex.profile.linux $baseyear
 cp TLMGRbase.desktop $baseyear
-cp fastex-icon-2020.svg $baseyear
-cp fastex-icon.svg $basedoc
+cp nanotex-icon-2020.svg $baseyear
+cp nanotex-icon.svg $basedoc
 #----------------------------------------------------
 # Move to the installation directory:
 #----------------------------------------------------
 cd $baseyear
 #----------------------------------------------------
-# Edit and rename fastex.profile.linux:
+# Edit and rename nanotex.profile.linux:
 #----------------------------------------------------
-perl -i -pe "s{<BASE>}{$baseyear}" fastex.profile.linux
-mv fastex.profile.linux fastex.profile
+perl -i -pe "s{<BASE>}{$baseyear}" nanotex.profile.linux
+mv nanotex.profile.linux nanotex.profile
 #----------------------------------------------------
 # Create /user and /share directories
 #----------------------------------------------------
@@ -92,7 +92,7 @@ mkdir share
 #####################################################
 echo "# Installing TeX Live infrastructure. This process can take several minutes depending on your connection speed."
 plat=`./install-tl -print-platform`
-./install-tl -no-gui -profile=./fastex.profile
+./install-tl -no-gui -profile=./nanotex.profile
 export PATH=$baseyear/bin/$plat:$PATH
 #----------------------------------------------------
 # Install a minimal set of packages
@@ -112,7 +112,7 @@ fi
 # Remove auxiliary files:
 #----------------------------------------------------
 rm pkgs-*.txt 
-rm fastex.profile
+rm nanotex.profile
 rm install-tl
 #####################################################
 #
@@ -162,17 +162,17 @@ fi
 #####################################################
 echo "# Setting the fodler icon"
 cd ..
-gio set -t string $year metadata::custom-icon file://$baseyear/fastex-icon-$year.svg
+gio set -t string $year metadata::custom-icon file://$baseyear/nanotex-icon-$year.svg
 cd ..
-gio set -t string $base metadata::custom-icon file://$basedoc/fastex-icon.svg
+gio set -t string $base metadata::custom-icon file://$basedoc/nanotex-icon.svg
 
 cd $base
 if [ $base = `pwd` ]]; then
-rm -f fastex-icon.svg
-rm -f fastex-icon.ico
+rm -f nanotex-icon.svg
+rm -f nanotex-icon.ico
 rm -f Desktop.ini
 rm -f *.txt
-rm -f fastex.profile.*
+rm -f nanotex.profile.*
 rm -f install-*
 rm -f wget-log
 rm -f TLMGRbase.desktop
@@ -181,11 +181,11 @@ rm -f .gitignore
 fi
 
 echo "# Finishing installation"
-echo "# Fastex $year successfully installed!"
+echo "# nanoTeX $year successfully installed!"
 
 #) |
 #zenity --progress \
-#  --title="FasTeX $year installation" \
+#  --title="nanoTeX $year installation" \
 #  --pulsate \
 #  --width=500 --height=300
 
