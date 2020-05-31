@@ -24,5 +24,7 @@ sectsty
 multirow
 siunitx
 listings
+longtable
+tabularx
 
 

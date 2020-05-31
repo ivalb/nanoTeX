@@ -6,3 +6,8 @@ ltxdockit
 btxdockit
 zref
 needspace
+fnpct
+koma-script
+translations
+pagenote
+ifmtrag
