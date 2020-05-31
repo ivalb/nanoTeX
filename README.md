@@ -22,7 +22,7 @@ Installation instructions (Linux)
 
 (3) Run the installer:
     
-      sh install-nanoTeX.sh
+      sh install-nanotex.sh
 
 (4) Follow the instructions and make your choice!
     
