@@ -9,3 +9,13 @@ bera
 mathpazo
 libertinust1math
 luatex85
+epigraph
+nextpage
+lettrine
+kantlipsum
+minipf
+epstopdf-pkg
+upquote
+biblatex-philosophy
+environ
+trimspaces

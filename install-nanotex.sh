@@ -97,7 +97,7 @@ export PATH=$baseyear/bin/$plat:$PATH
 #----------------------------------------------------
 # Install a minimal set of packages
 #----------------------------------------------------
-cat pkgs-minimal.txt pkgs-languages.txt pkgs-classes.txt pkgs-mathematics.txt > pkgs-all.txt
+cat pkgs-minimal.txt pkgs-languages.txt pkgs-classes.txt pkgs-mathematics.txt pkgs-fonts > pkgs-all.txt
 echo "# Installing a minimal set of packages. This process can take several minutes depending on your connection speed."
 tlmgr install latex-bin luahbtex tlshell $(cat pkgs-all.txt | tr '\n' ' ')
 #----------------------------------------------------

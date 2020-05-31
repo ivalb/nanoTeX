@@ -1,0 +1,8 @@
+cochineal
+inconsolata
+newtx
+newpx
+cbfonts
+cbfonts-fd
+
+

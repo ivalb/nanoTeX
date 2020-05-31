@@ -3,4 +3,3 @@ memoir
 toptesi
 beamer
 sapthesis
-suftesi

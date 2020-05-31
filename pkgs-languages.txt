@@ -12,8 +12,6 @@ hyphen-greek
 hyphen-ancientgreek
 greek-fontenc
 greek-inputenc
-cbfonts
-cbfonts-fd
 begingreek
 babel-latin
 hyphen-latin

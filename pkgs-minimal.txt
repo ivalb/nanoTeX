@@ -17,14 +17,7 @@ csquotes
 natbib
 amsmath
 imakeidx
-cochineal
-textcomp
-inconsolata
-biolinum
-newtx
-newpx
 pdfpages
-amsmath
 appendix
 
 
