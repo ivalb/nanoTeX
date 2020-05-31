@@ -1,0 +1,8 @@
+mdframed
+metalogo
+hologo
+guilogo
+ltxdockit
+btxdockit
+zref
+needspace

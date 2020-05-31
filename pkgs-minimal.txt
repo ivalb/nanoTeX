@@ -19,5 +19,10 @@ amsmath
 imakeidx
 pdfpages
 appendix
+parskip
+sectsty
+multirow
+siunitx
+listings
 
 
