@@ -17,5 +17,3 @@ minipf
 epstopdf-pkg
 upquote
 biblatex-philosophy
-environ
-trimspaces
