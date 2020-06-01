@@ -68,6 +68,7 @@ tar -C $baseyear --strip-components=1 -xzf install-tl-unx.tar.gz
 #----------------------------------------------------
 cp *.txt $baseyear
 cp nanotex.profile.linux $baseyear
+cp nanotex.profile.linux.full $baseyear
 cp TLMGRbase.desktop $baseyear
 cp nanotex-icon-2020.svg $baseyear
 cp nanotex-icon.svg $basedoc
@@ -76,20 +77,37 @@ cp nanotex-icon.svg $basedoc
 #----------------------------------------------------
 cd $baseyear
 #----------------------------------------------------
-# Edit and rename nanotex.profile.linux:
-#----------------------------------------------------
-perl -i -pe "s{<BASE>}{$baseyear}" nanotex.profile.linux
-mv nanotex.profile.linux nanotex.profile
-#----------------------------------------------------
 # Create /user and /share directories
 #----------------------------------------------------
 mkdir user
 mkdir share
+zenq --ok-label="Full" --cancel-label="Basic (recommended!)" --text="Do you want a basic installation or a full installation?"
+if [ $? = 0 ]  ;then
 #####################################################
 #
-#                  INSTALLATION
+#              INSTALLATION FULL
 #
 #####################################################
+#----------------------------------------------------
+# Edit and rename nanotex.profile.linux:
+#----------------------------------------------------
+perl -i -pe "s{<BASE>}{$baseyear}" nanotex.profile.linux.full
+mv nanotex.profile.linux.full nanotex.profile
+echo "# Installing TeX Live infrastructure. This process can take several minutes depending on your connection speed."
+plat=`./install-tl -print-platform`
+./install-tl -no-gui -profile=./nanotex.profile
+export PATH=$baseyear/bin/$plat:$PATH
+else
+#####################################################
+#
+#              INSTALLATION CUSTOM
+#
+#####################################################
+#----------------------------------------------------
+# Edit and rename nanotex.profile.linux:
+#----------------------------------------------------
+perl -i -pe "s{<BASE>}{$baseyear}" nanotex.profile.linux
+mv nanotex.profile.linux nanotex.profile
 echo "# Installing TeX Live infrastructure. This process can take several minutes depending on your connection speed."
 plat=`./install-tl -print-platform`
 ./install-tl -no-gui -profile=./nanotex.profile
@@ -107,6 +125,7 @@ zenq --text="Do you want to install the suftesi class?"
 if [ $? = 0 ]  ;then
 echo "# Installing suftesi class. This process can take several minutes depending on your connection speed."
 tlmgr install $(cat pkgs-suftesi.txt | tr '\n' ' ')
+fi
 fi
 #----------------------------------------------------
 # Remove auxiliary files:
