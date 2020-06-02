@@ -81,7 +81,7 @@ cd $baseyear
 #----------------------------------------------------
 mkdir user
 mkdir share
-zenq --ok-label="Full" --cancel-label="Basic (recommended!)" --text="Do you want to perform a basic or full installation? A full installation will require several GB, while the basic installation will be around 300 MB. I recommend the basic installation, because you can always add missing packages later."
+zenq --ok-label="Full" --cancel-label="Basic (recommended!)" --text="Do you want to perform a basic or full installation?\n\n\A full installation will require several GB, while the basic installation will be around 300 MB.\n\n\n\I recommend the basic installation because you can always add missing packages later."
 if [ $? = 0 ]  ;then
 #####################################################
 #
