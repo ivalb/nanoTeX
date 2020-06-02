@@ -92,6 +92,7 @@ if [ $? = 0 ]  ;then
 # Edit and rename nanotex.profile.linux:
 #----------------------------------------------------
 perl -i -pe "s{<BASE>}{$baseyear}" nanotex.profile.linux.full
+#perl -i -pe "s{<BASEU>}{$baseyear}" nanotex.profile.linux.full
 mv nanotex.profile.linux.full nanotex.profile
 echo "# Installing TeX Live infrastructure. This process can take several minutes depending on your connection speed."
 plat=`./install-tl -print-platform`
@@ -107,6 +108,7 @@ else
 # Edit and rename nanotex.profile.linux:
 #----------------------------------------------------
 perl -i -pe "s{<BASE>}{$baseyear}" nanotex.profile.linux
+#perl -i -pe "s{<BASEU>}{$baseyear}" nanotex.profile.linux
 mv nanotex.profile.linux nanotex.profile
 echo "# Installing TeX Live infrastructure. This process can take several minutes depending on your connection speed."
 plat=`./install-tl -print-platform`
@@ -135,7 +137,7 @@ fi
 # Remove auxiliary files:
 #----------------------------------------------------
 rm pkgs-*.txt 
-rm nanotex.profile
+rm nanotex.profile*
 rm install-tl
 #####################################################
 #
