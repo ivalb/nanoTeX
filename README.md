@@ -1,7 +1,7 @@
 A custom installer for TeX Live (Beta version for testing only)
 --------------------------------
 
-<img src="https://github.com/ivalb/nanoTeX/blob/master/nanotex-icon.svg" alt="nanoTeX logo" align="right" width="260px" style="max-width:100%;margin:0px 0px" border="0"> nanoTeX is a custom installer for TeX Live distribution. Its purpose is to provide a minimal TeX Live distribution, which can be downloaded quickly and which takes up little space. The script installs the TeX Live infrastructure only and a series of packages that are considered basic for each user. Furthermore, during installation the user can decide whether to install lists of particular packages, according to his needs. For example, a humanist might want to install packages to write in Greek, while a mathematician will need some classic mathematic packages. The installation omits downloading the documentation and the sources of the packages, which take up a lot of space and which are often never consulted. However, it is always possible to install individual packages later, using the TeX Live Manager program.
+<img src="https://github.com/ivalb/nanoTeX/blob/master/nanotex-icon.svg" alt="nanoTeX logo" align="right" width="260px" style="max-width:100%;margin:0px 0px" border="0">nanoTeX is a custom installer for TeX Live distribution. Its purpose is to provide a minimal LaTeX installation, which can be downloaded quickly and which takes up little space. The script allows you to install in the Home or in the current directory and to choose between a basic installation (recommended) or a full installation. 
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
@@ -11,8 +11,20 @@ Acknowledgments
 -------------------------------------
 Thanks to Luigi Scarso and Massimiliano Dominici for their availability. In particular, I would like to remind you that the initial installer code for Linux was written by Luigi Scarso.  I would also like to express my special thanks to Tommaso Gordini, who has tested both installers, and particularly the one for Windows.
 
-Installation instructions (Linux)
+Installation (Linux)
 -------------------------------------
+
+<h3>Basic installation</h3>
+
+In the case of the basic installation, a list of packages will be installed which are considered essential for most users, omitting the sources but including the documentation. For the packages installed subsequently, also the documentation is omitted by default. This choice can be changed directly in the TLShell options or from the command line with:
+
+    tlmgr option docfiles 0
+
+<h3>Full installation</h3>
+
+In the case of a full installation, everything will be installed, including documentation and package sources (also for future package installations). This installation, with the exception of the installation folder, is identical to the default one provided by TeX Live. 
+
+<h3>Installation procedure</h3>
 
 (1) Download the repository from GitHub. Unzip the folder and open a Terminal window.
 
@@ -24,8 +36,7 @@ Installation instructions (Linux)
     
       sh install-nanotex.sh
 
-(4) Follow the instructions and make your choice!
-    
+(4) Follow the instructions and make your choice!    
 
 Installation instructions (Windows) !Note that this installer is not optimized at all, even if it seems to work!
 -------------------------------------

@@ -121,11 +121,15 @@ tlmgr install latex-bin luahbtex tlshell $(cat pkgs-all.txt | tr '\n' ' ')
 #----------------------------------------------------
 # Installing suftesi
 #----------------------------------------------------
-zenq --text="Do you want to install the suftesi class?"
+zenq --text="Do you want to install the 'suftesi' class and all its dependecies (documentation included)?"
 if [ $? = 0 ]  ;then
 echo "# Installing suftesi class. This process can take several minutes depending on your connection speed."
-tlmgr install $(cat pkgs-suftesi.txt | tr '\n' ' ')
+tlmgr install --with-doc $(cat pkgs-suftesi.txt | tr '\n' ' ')
 fi
+#----------------------------------------------------
+# No documentation for future package installations
+#----------------------------------------------------
+tlmgr option docfiles 0
 fi
 #----------------------------------------------------
 # Remove auxiliary files:
