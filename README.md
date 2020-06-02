@@ -14,18 +14,6 @@ Thanks to Luigi Scarso and Massimiliano Dominici for their availability. In part
 Installation (Linux)
 -------------------------------------
 
-<h5>Basic installation</h5>
-
-In the case of the basic installation, a list of packages will be installed which are considered essential for most users, omitting the sources but including the documentation. For the packages installed subsequently, also the documentation is omitted by default. This choice can be changed directly in the TLShell options or from the command line with:
-
-    tlmgr option docfiles 0
-
-<h5>Full installation</h5>
-
-In the case of a full installation, everything will be installed, including documentation and package sources (also for future package installations). This installation, with the exception of the installation folder, is identical to the default one provided by TeX Live. 
-
-<h5>Procedure</h5>
-
 (1) Download the repository from GitHub. Unzip the folder and open a Terminal window.
 
 (2) Move inside the downloaded folder (You can rename the folder if you prefer):
@@ -37,6 +25,17 @@ In the case of a full installation, everything will be installed, including docu
       sh install-nanotex.sh
 
 (4) Follow the instructions and make your choice!    
+
+<h5>Basic installation</h5>
+
+In the case of the basic installation, a list of packages will be installed which are considered essential for most users, omitting the sources but including the documentation. For the packages installed subsequently, also the documentation is omitted by default. This choice can be changed directly in the TLShell options or from the command line with:
+
+    tlmgr option docfiles 0
+
+<h5>Full installation</h5>
+
+In the case of a full installation, everything will be installed, including documentation and package sources (also for future package installations). This installation, with the exception of the installation folder, is identical to the default one provided by TeX Live. 
+
 
 Installation instructions (Windows) !Note that this installer is not optimized at all, even if it seems to work!
 -------------------------------------
