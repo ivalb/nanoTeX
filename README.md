@@ -7,7 +7,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-<h5>Acknowledgments</h5>
+<h2>Acknowledgments</h2>
 
 Thanks to Luigi Scarso and Massimiliano Dominici for their availability. In particular, I would like to remind you that the initial installer code for Linux was written by Luigi Scarso.  I would also like to express my special thanks to Tommaso Gordini, who has tested both installers, and particularly the one for Windows.
 
