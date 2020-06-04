@@ -3,12 +3,12 @@
 # correct value
 selected_scheme scheme-full
 TEXDIR <BASE>
-TEXMFCONFIG <BASE>/user/texmf-config
-TEXMFHOME <BASE>/user/texmf
+TEXMFCONFIG <BASEU>/texmf-config
+TEXMFHOME <BASEU>/texmf
 TEXMFLOCAL <BASE>/texmf-local
 TEXMFSYSCONFIG <BASE>/texmf-config
 TEXMFSYSVAR <BASE>/texmf-var
-TEXMFVAR <BASE>/user/texmf-var
+TEXMFVAR <BASEU>/texmf-var
 instopt_adjustpath 0
 instopt_adjustrepo 1
 instopt_letter 0

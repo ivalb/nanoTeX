@@ -33,9 +33,10 @@ else
 base=$HOME/nanotex
 fi
 baseyear=$base/$year
-basedoc=$base/doc
 basepath=$base/$year/bin
 
+cd $base
+mkdir texmf
 if [ -d "$baseyear" ]; then
 zenq --text="A folder '$baseyear already exists.\n\
 You are probably attempting to reinstall nanoTeX $year.\n\
@@ -43,10 +44,8 @@ By pressing 'YES' the folder will be overwritten and all its contents will be lo
 Do you want to procede?"
 # If 'YES':
   if [ $? = 0 ]  ;then
-    rm -r $baseyear
-    rm -rf $basedoc
-    mkdir -p $baseyear
-    mkdir -p $basedoc
+    rm -r $year
+    mkdir -p $year
 # If 'NO':
   else
 zeni --text="You have chosen to exit the installation.\n\n\n\n\ GOODBYE!!!"
@@ -54,9 +53,9 @@ zeni --text="You have chosen to exit the installation.\n\n\n\n\ GOODBYE!!!"
 fi
 else
 # If ~/nanotex/$year does not exist:
-  mkdir -p $baseyear
-  mkdir -p $basedoc
+  mkdir -p $year
 fi
+cd pwd
 #----------------------------------------------------
 # Download the installer from the nearest CTAN mirror: 
 #----------------------------------------------------
@@ -70,7 +69,7 @@ cp *.txt $baseyear
 cp nanotex.profile.linux $baseyear
 cp TLMGRbase.desktop $baseyear
 cp nanotex-icon-2020.svg $baseyear
-cp nanotex-icon.svg $basedoc
+cp nanotex-icon.svg $base
 #----------------------------------------------------
 # Move to the installation directory:
 #----------------------------------------------------
@@ -78,8 +77,8 @@ cd $baseyear
 #----------------------------------------------------
 # Create /user and /share directories
 #----------------------------------------------------
-mkdir user
-mkdir share
+#mkdir user
+#mkdir share
 zenq --ok-label="Full" --cancel-label="Basic (recommended!)" --text="Do you want to perform a basic or full installation?\n\n\
 A full installation will require several GB, while the basic installation will be around 300 MB.\n\n\n\
 I recommend the basic installation because you can always add missing packages later."
@@ -93,7 +92,7 @@ if [ $? = 0 ]  ;then
 # Edit and rename nanotex.profile.linux:
 #----------------------------------------------------
 perl -i -pe "s{<BASE>}{$baseyear}" nanotex.profile.linux
-#perl -i -pe "s{<BASEU>}{$baseyear}" nanotex.profile.linux
+perl -i -pe "s{<BASEU>}{$base}" nanotex.profile.linux
 mv nanotex.profile.linux nanotex.profile
 echo "# Installing TeX Live infrastructure. This process can take several minutes depending on your connection speed."
 plat=`./install-tl -print-platform`
@@ -113,7 +112,7 @@ perl -i -pe "s{srcfiles 1}{srcfiles 0}" nanotex.profile.linux
 perl -i -pe "s{autobackup 1}{autobackup 0}" nanotex.profile.linux
 perl -i -pe "s{srcfiles 1}{srcfiles 0}" nanotex.profile.linux
 perl -i -pe "s{scheme-full}{scheme-infraonly}" nanotex.profile.linux
-#perl -i -pe "s{<BASEU>}{$baseyear}" nanotex.profile.linux
+perl -i -pe "s{<BASEU>}{$base}" nanotex.profile.linux
 mv nanotex.profile.linux nanotex.profile
 echo "# Installing TeX Live infrastructure. This process can take several minutes depending on your connection speed."
 plat=`./install-tl -print-platform`
@@ -194,7 +193,7 @@ echo "# Setting the fodler icon"
 cd ..
 gio set -t string $year metadata::custom-icon file://$baseyear/nanotex-icon-$year.svg
 cd ..
-gio set -t string $base metadata::custom-icon file://$basedoc/nanotex-icon.svg
+gio set -t string $base metadata::custom-icon file://$base/nanotex-icon.svg
 
 cd $base
 if [ $base = `pwd` ]]; then
