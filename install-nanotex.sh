@@ -33,10 +33,9 @@ else
 base=$HOME/nanotex
 fi
 baseyear=$base/$year
-basepath=$base/$year/bin
 
-cd $base
-mkdir texmf
+mkdir $base/texmf
+
 if [ -d "$baseyear" ]; then
 zenq --text="A folder '$baseyear already exists.\n\
 You are probably attempting to reinstall nanoTeX $year.\n\
@@ -44,8 +43,8 @@ By pressing 'YES' the folder will be overwritten and all its contents will be lo
 Do you want to procede?"
 # If 'YES':
   if [ $? = 0 ]  ;then
-    rm -r $year
-    mkdir -p $year
+    rm -r $baseyear
+    mkdir -p $baseyear
 # If 'NO':
   else
 zeni --text="You have chosen to exit the installation.\n\n\n\n\ GOODBYE!!!"
@@ -53,9 +52,9 @@ zeni --text="You have chosen to exit the installation.\n\n\n\n\ GOODBYE!!!"
 fi
 else
 # If ~/nanotex/$year does not exist:
-  mkdir -p $year
+  mkdir -p $baseyear
 fi
-cd pwd
+
 #----------------------------------------------------
 # Download the installer from the nearest CTAN mirror: 
 #----------------------------------------------------
@@ -68,7 +67,7 @@ tar -C $baseyear --strip-components=1 -xzf install-tl-unx.tar.gz
 cp *.txt $baseyear
 cp nanotex.profile.linux $baseyear
 cp TLMGRbase.desktop $baseyear
-cp nanotex-icon-2020.svg $baseyear
+cp nanotex-icon-$year.svg $baseyear
 cp nanotex-icon.svg $base
 #----------------------------------------------------
 # Move to the installation directory:
@@ -123,7 +122,8 @@ export PATH=$baseyear/bin/$plat:$PATH
 #----------------------------------------------------
 cat pkgs-minimal.txt pkgs-languages.txt pkgs-classes.txt pkgs-mathematics.txt pkgs-fonts > pkgs-all.txt
 echo "# Installing a minimal set of packages. This process can take several minutes depending on your connection speed."
-tlmgr install latex-bin luahbtex tlshell $(cat pkgs-all.txt | tr '\n' ' ')
+tlmgr install fontsize
+#latex-bin luahbtex tlshell $(cat pkgs-all.txt | tr '\n' ' ')
 #----------------------------------------------------
 # Installing suftesi
 #----------------------------------------------------
@@ -161,7 +161,7 @@ $baseyear/bin/$plat"
   if [ $? = 0 ]  ;then
 #sed -i "\|$base|d" ~/.profile
 #echo "$TEXT" >> ~/.profile
-sed -i "\|$basepath|d" ~/.bash_aliases
+sed -i "\|$base/202*[0-9]/bin|d" ~/.bash_aliases
 echo "$TEXT" >> ~/.bash_aliases
 # If 'NO':
 else
@@ -197,7 +197,6 @@ gio set -t string $base metadata::custom-icon file://$base/nanotex-icon.svg
 
 cd $base
 if [ $base = `pwd` ]]; then
-rm -f nanotex-icon.svg
 rm -f nanotex-icon.ico
 rm -f Desktop.ini
 rm -f *.txt
