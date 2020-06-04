@@ -68,7 +68,6 @@ tar -C $baseyear --strip-components=1 -xzf install-tl-unx.tar.gz
 #----------------------------------------------------
 cp *.txt $baseyear
 cp nanotex.profile.linux $baseyear
-cp nanotex.profile.linux.full $baseyear
 cp TLMGRbase.desktop $baseyear
 cp nanotex-icon-2020.svg $baseyear
 cp nanotex-icon.svg $basedoc
@@ -93,9 +92,9 @@ if [ $? = 0 ]  ;then
 #----------------------------------------------------
 # Edit and rename nanotex.profile.linux:
 #----------------------------------------------------
-perl -i -pe "s{<BASE>}{$baseyear}" nanotex.profile.linux.full
-#perl -i -pe "s{<BASEU>}{$baseyear}" nanotex.profile.linux.full
-mv nanotex.profile.linux.full nanotex.profile
+perl -i -pe "s{<BASE>}{$baseyear}" nanotex.profile.linux
+#perl -i -pe "s{<BASEU>}{$baseyear}" nanotex.profile.linux
+mv nanotex.profile.linux nanotex.profile
 echo "# Installing TeX Live infrastructure. This process can take several minutes depending on your connection speed."
 plat=`./install-tl -print-platform`
 ./install-tl -no-gui -profile=./nanotex.profile
@@ -110,6 +109,10 @@ else
 # Edit and rename nanotex.profile.linux:
 #----------------------------------------------------
 perl -i -pe "s{<BASE>}{$baseyear}" nanotex.profile.linux
+perl -i -pe "s{srcfiles 1}{srcfiles 0}" nanotex.profile.linux
+perl -i -pe "s{autobackup 1}{autobackup 0}" nanotex.profile.linux
+perl -i -pe "s{srcfiles 1}{srcfiles 0}" nanotex.profile.linux
+perl -i -pe "s{scheme-full}{scheme-infraonly}" nanotex.profile.linux
 #perl -i -pe "s{<BASEU>}{$baseyear}" nanotex.profile.linux
 mv nanotex.profile.linux nanotex.profile
 echo "# Installing TeX Live infrastructure. This process can take several minutes depending on your connection speed."
@@ -131,7 +134,7 @@ echo "# Installing suftesi class. This process can take several minutes dependin
 tlmgr install --with-doc $(cat pkgs-suftesi.txt | tr '\n' ' ')
 fi
 #----------------------------------------------------
-# No documentation for future package installations
+# No documentation for future package installations?
 #----------------------------------------------------
 tlmgr option docfiles 0
 fi
@@ -199,7 +202,7 @@ rm -f nanotex-icon.svg
 rm -f nanotex-icon.ico
 rm -f Desktop.ini
 rm -f *.txt
-rm -f nanotex.profile.*
+rm -f nanotex.profile*
 rm -f install-*
 rm -f wget-log
 rm -f TLMGRbase.desktop
