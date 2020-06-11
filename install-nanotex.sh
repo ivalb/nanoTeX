@@ -19,6 +19,11 @@
 # Set the variable for the installation directory
 #----------------------------------------------------
 year=2020
+#if [ "$(uname)" = "Darwin" ]; then
+#    echo "# Do something under Mac OS X platform"        
+#elif [ "$(expr substr $(uname -s) 1 5)" = "Linux" ]; then
+#    echo "# Do something under GNU/Linux platform"
+#fi
 alias zenq='zenity --question --icon-name=info --width=500 --height=300 --title="nanoTeX $year Installation" --ok-label="YES" --cancel-label="NO"'
 alias zeni='zenity --info --width=500 --height=300 --title="nanoTeX $year Installation"'
 #----------------------------------------------------
@@ -26,6 +31,12 @@ alias zeni='zenity --info --width=500 --height=300 --title="nanoTeX $year Instal
 #----------------------------------------------------
 # If ~/nanotex/$year exists:
 #(
+#read -p "Continue (c/h)? Press c for 'current'; press h for 'Home'." CONT
+#if [ "$CONT" = "c" ]; then
+#  echo "yaaa";
+#else
+#  echo "booo";
+#fi
 zenq --ok-label="Current Directory" --cancel-label="Home Directory" --text="Where do you want to install nanoTeX?"
 if [ $? = 0 ]  ;then
 base=`pwd`
