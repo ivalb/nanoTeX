@@ -9,34 +9,11 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-#
-#####################################################
-#
-#            SETUP FILES AND FOLDERS
-#
-#####################################################
-#----------------------------------------------------
-# Set the variable for the installation directory
-#----------------------------------------------------
+#-------------------------------------------------------------------------------
 year=2020
-#if [ "$(uname)" = "Darwin" ]; then
-#    echo "# Do something under Mac OS X platform"        
-#elif [ "$(expr substr $(uname -s) 1 5)" = "Linux" ]; then
-#    echo "# Do something under GNU/Linux platform"
-#fi
 alias zenq='zenity --question --icon-name=info --width=500 --height=300 --title="nanoTeX $year Installation" --ok-label="YES" --cancel-label="NO"'
 alias zeni='zenity --info --width=500 --height=300 --title="nanoTeX $year Installation"'
-#----------------------------------------------------
-# Create the installation direcotry
-#----------------------------------------------------
-# If ~/nanotex/$year exists:
-#(
-#read -p "Continue (c/h)? Press c for 'current'; press h for 'Home'." CONT
-#if [ "$CONT" = "c" ]; then
-#  echo "yaaa";
-#else
-#  echo "booo";
-#fi
+
 zenq --ok-label="Current Directory" --cancel-label="Home Directory" --text="Where do you want to install nanoTeX?"
 if [ $? = 0 ]  ;then
 base=`pwd`
@@ -44,8 +21,6 @@ else
 base=$HOME/nanotex
 fi
 baseyear=$base/$year
-
-mkdir $base/texmf
 
 if [ -d "$baseyear" ]; then
 zenq --text="A folder '$baseyear already exists.\n\
@@ -65,7 +40,7 @@ else
 # If ~/nanotex/$year does not exist:
   mkdir -p $baseyear
 fi
-
+  mkdir $base/texmf
 #----------------------------------------------------
 # Download the installer from the nearest CTAN mirror: 
 #----------------------------------------------------
@@ -85,37 +60,25 @@ cp nanotex-icon.svg $base
 #----------------------------------------------------
 cd $baseyear
 #----------------------------------------------------
-# Create /user and /share directories
+# INSTALLATION
 #----------------------------------------------------
-#mkdir user
-#mkdir share
 zenq --ok-label="Full" --cancel-label="Basic (recommended!)" --text="Do you want to perform a basic or full installation?\n\n\
 A full installation will require several GB, while the basic installation will be around 300 MB.\n\n\n\
 I recommend the basic installation because you can always add missing packages later."
 if [ $? = 0 ]  ;then
-#####################################################
-#
-#              INSTALLATION FULL
-#
-#####################################################
 #----------------------------------------------------
-# Edit and rename nanotex.profile.linux:
+# Full
 #----------------------------------------------------
 perl -i -pe "s{<BASE>}{$baseyear}" nanotex.profile.linux
 perl -i -pe "s{<BASEU>}{$base}" nanotex.profile.linux
 mv nanotex.profile.linux nanotex.profile
-echo "# Installing TeX Live infrastructure. This process can take several minutes depending on your connection speed."
+echo "# Installing TeX Live full. This process can take several minutes depending on your connection speed."
 plat=`./install-tl -print-platform`
 ./install-tl -no-gui -profile=./nanotex.profile
 export PATH=$baseyear/bin/$plat:$PATH
 else
-#####################################################
-#
-#              INSTALLATION CUSTOM
-#
-#####################################################
 #----------------------------------------------------
-# Edit and rename nanotex.profile.linux:
+# Custom
 #----------------------------------------------------
 perl -i -pe "s{<BASE>}{$baseyear}" nanotex.profile.linux
 perl -i -pe "s{srcfiles 1}{srcfiles 0}" nanotex.profile.linux
@@ -153,11 +116,9 @@ fi
 rm pkgs-*.txt 
 rm nanotex.profile*
 rm install-tl
-#####################################################
-#
-#                PATH SETTING
-#
-#####################################################
+#----------------------------------------------------
+# Path setting
+#----------------------------------------------------
 echo "# Path settings."
 TEXT="PATH=$baseyear/bin/$plat:\$PATH"
 if [ -f $HOME/.bash_aliases ]; then
@@ -180,11 +141,9 @@ fi
 else
 echo "$TEXT" >> ~/.bash_aliases
 fi
-#####################################################
-#
-#             CREATE TLMGR LAUNCHER
-#
-#####################################################
+#----------------------------------------------------
+# CREATE TLMGR LAUNCHER
+#----------------------------------------------------
 File=/etc/lsb-release
 if grep -q Mint "$File"; then
 echo "# Creating a TeX Live Manager launcher"
@@ -194,11 +153,9 @@ perl -i -pe "s{<BASE>}{$baseyear}" TLMGRbase.desktop
 perl -i -pe "s{TLMGRbase}{TeX Live Manager}" TLMGRbase.desktop
 fi
 fi
-#####################################################
-#
-#                SET FOLDER ICON
-#
-#####################################################
+#----------------------------------------------------
+# SET FOLDER ICON
+#----------------------------------------------------
 echo "# Setting the fodler icon"
 cd ..
 gio set -t string $year metadata::custom-icon file://$baseyear/nanotex-icon-$year.svg
@@ -220,12 +177,5 @@ fi
 
 echo "# Finishing installation"
 echo "# nanoTeX $year successfully installed!"
-
-#) |
-#zenity --progress \
-#  --title="nanoTeX $year installation" \
-#  --pulsate \
-#  --width=500 --height=300
-
 
 

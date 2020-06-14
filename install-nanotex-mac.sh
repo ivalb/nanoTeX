@@ -9,21 +9,8 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-#
-#####################################################
-#
-#            SETUP FILES AND FOLDERS
-#
-#####################################################
-#----------------------------------------------------
-# Set the variable for the installation directory
-#----------------------------------------------------
+#-------------------------------------------------------------------------------
 year=2020
-#----------------------------------------------------
-# Create the installation direcotry
-#----------------------------------------------------
-# If ~/nanotex/$year exists:
-#(
 read -p "Where do you want to install nanoTeX? Press 'c' for 'current directory'; press 'h' for 'Home directory'." INSTDIR
 if [ "$INSTDIR" = "c" ]; then
   base=`pwd`
@@ -31,8 +18,6 @@ else
   base=$HOME/nanotex
 fi
 baseyear=$base/$year
-
-mkdir $base/texmf
 
 if [ -d "$baseyear" ]; then
 read -p "A folder '$baseyear already exists. You are probably attempting to reinstall nanoTeX $year. By pressing 'y' the folder will be overwritten and all its contents will be lost. By pressin 'n' the installation process will be terminated. Do you want to procede?" CONTROLDIR
@@ -49,55 +34,42 @@ else
 # If ~/nanotex/$year does not exist:
   mkdir -p $baseyear
 fi
-
+  mkdir $base/texmf
 #----------------------------------------------------
-# Download the installer from the nearest CTAN mirror: 
+# Download installer
 #----------------------------------------------------
 echo "# Downloading the installer from a CTAN mirror..."
 wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
 tar -C $baseyear --strip-components=1 -xzf install-tl-unx.tar.gz
 #----------------------------------------------------
-# Copy the auxiliary files in the installation directory:
+# Setup folder
 #----------------------------------------------------
 cp *.txt $baseyear
 cp nanotex.profile.linux $baseyear
-cp nanotex-icon-$year.svg $baseyear
-cp nanotex-icon.svg $base
-#----------------------------------------------------
-# Move to the installation directory:
-#----------------------------------------------------
 cd $baseyear
 #----------------------------------------------------
-# Create /user and /share directories
+# INSTALLATION 
 #----------------------------------------------------
-#mkdir user
-#mkdir share
 read -p "Do you want to perform a basic or full installation? A full installation will require several GB, while the basic installation will be around 300 MB. I recommend the basic installation because you can always add missing packages later.? Press 'f' for 'FULL'; press 'c' for 'CUSTOM'." FULLCUSTOM
 if [ "$FULLCUSTOM" = "f" ]; then
-#####################################################
-#
-#              INSTALLATION FULL
-#
-#####################################################
-#----------------------------------------------------
-# Edit and rename nanotex.profile.linux:
-#----------------------------------------------------
+# FULL
+#sed -i '' 's/<BASE>/$baseyear/g' nanotex.profile.linux
+#sed -i '' 's/<BASEU>/$base/g' nanotex.profile.linux
 perl -i -pe "s{<BASE>}{$baseyear}" nanotex.profile.linux
 perl -i -pe "s{<BASEU>}{$base}" nanotex.profile.linux
 mv nanotex.profile.linux nanotex.profile
-echo "# Installing TeX Live infrastructure. This process can take several minutes depending on your connection speed."
+echo "# Installing TeX Live full. This process can take several minutes depending on your connection speed."
 plat=`./install-tl -print-platform`
 ./install-tl -no-gui -profile=./nanotex.profile
 export PATH=$baseyear/bin/$plat:$PATH
 else
-#####################################################
-#
-#              INSTALLATION CUSTOM
-#
-#####################################################
-#----------------------------------------------------
-# Edit and rename nanotex.profile.linux:
-#----------------------------------------------------
+# CUSTOM
+#sed -i '' 's/<BASE>/$baseyear/g' nanotex.profile.linux
+#sed -i '' 's/<BASEU>/$base/g' nanotex.profile.linux
+#sed -i '' 's/srcfiles 1/srcfiles 0/g' nanotex.profile.linux
+#sed -i '' 's/autobackup 1/autobackup 0/g' nanotex.profile.linux
+#sed -i '' 's/srcfiles 1/srcfiles 0/g' nanotex.profile.linux
+#sed -i '' 's/scheme-full/scheme-infraonly/g' nanotex.profile.linux
 perl -i -pe "s{<BASE>}{$baseyear}" nanotex.profile.linux
 perl -i -pe "s{srcfiles 1}{srcfiles 0}" nanotex.profile.linux
 perl -i -pe "s{autobackup 1}{autobackup 0}" nanotex.profile.linux
@@ -105,7 +77,7 @@ perl -i -pe "s{srcfiles 1}{srcfiles 0}" nanotex.profile.linux
 perl -i -pe "s{scheme-full}{scheme-infraonly}" nanotex.profile.linux
 perl -i -pe "s{<BASEU>}{$base}" nanotex.profile.linux
 mv nanotex.profile.linux nanotex.profile
-echo "# Installing TeX Live infrastructure. This process can take several minutes depending on your connection speed."
+echo "# Installing TeX Live custom. This process can take several minutes depending on your connection speed."
 plat=`./install-tl -print-platform`
 ./install-tl -no-gui -profile=./nanotex.profile
 export PATH=$baseyear/bin/$plat:$PATH
@@ -124,7 +96,7 @@ echo "# Installing suftesi class. This process can take several minutes dependin
 tlmgr install --with-doc $(cat pkgs-suftesi.txt | tr '\n' ' ')
 fi
 #----------------------------------------------------
-# No documentation for future package installations?
+# No documentation for future package installations? 
 #----------------------------------------------------
 tlmgr option docfiles 0
 fi
@@ -134,11 +106,9 @@ fi
 rm pkgs-*.txt 
 rm nanotex.profile*
 rm install-tl
-#####################################################
-#
-#                PATH SETTING
-#
-#####################################################
+#----------------------------------------------------
+# Path settings
+#----------------------------------------------------
 echo "# Path settings."
 TEXT="PATH=$baseyear/bin/$plat:\$PATH"
 if [ -f $HOME/.bash_aliases ]; then
