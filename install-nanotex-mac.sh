@@ -19,46 +19,30 @@
 # Set the variable for the installation directory
 #----------------------------------------------------
 year=2020
-#if [ "$(uname)" = "Darwin" ]; then
-#    echo "# Do something under Mac OS X platform"        
-#elif [ "$(expr substr $(uname -s) 1 5)" = "Linux" ]; then
-#    echo "# Do something under GNU/Linux platform"
-#fi
-alias zenq='zenity --question --icon-name=info --width=500 --height=300 --title="nanoTeX $year Installation" --ok-label="YES" --cancel-label="NO"'
-alias zeni='zenity --info --width=500 --height=300 --title="nanoTeX $year Installation"'
 #----------------------------------------------------
 # Create the installation direcotry
 #----------------------------------------------------
 # If ~/nanotex/$year exists:
 #(
-#read -p "Continue (c/h)? Press c for 'current'; press h for 'Home'." CONT
-#if [ "$CONT" = "c" ]; then
-#  echo "yaaa";
-#else
-#  echo "booo";
-#fi
-zenq --ok-label="Current Directory" --cancel-label="Home Directory" --text="Where do you want to install nanoTeX?"
-if [ $? = 0 ]  ;then
-base=`pwd`
+read -p "Where do you want to install nanoTeX? Press 'c' for 'current directory'; press 'h' for 'Home directory'." INSTDIR
+if [ "$INSTDIR" = "c" ]; then
+  base=`pwd`
 else
-base=$HOME/nanotex
+  base=$HOME/nanotex
 fi
 baseyear=$base/$year
 
 mkdir $base/texmf
 
 if [ -d "$baseyear" ]; then
-zenq --text="A folder '$baseyear already exists.\n\
-You are probably attempting to reinstall nanoTeX $year.\n\
-By pressing 'YES' the folder will be overwritten and all its contents will be lost. By clicking on "NO" the installation process will be terminated.\n\n\
-Do you want to procede?"
+read -p "A folder '$baseyear already exists. You are probably attempting to reinstall nanoTeX $year. By pressing 'y' the folder will be overwritten and all its contents will be lost. By pressin 'n' the installation process will be terminated. Do you want to procede?" CONTROLDIR
+if [ "$CONTROLDIR" = "y" ]; then
 # If 'YES':
-  if [ $? = 0 ]  ;then
     rm -r $baseyear
     mkdir -p $baseyear
 # If 'NO':
   else
-zeni --text="You have chosen to exit the installation.\n\n\n\n\ GOODBYE!!!"
+echo "You have chosen to exit the installation.\n\n\n\n\ GOODBYE!!!"
   exit
 fi
 else
@@ -77,7 +61,6 @@ tar -C $baseyear --strip-components=1 -xzf install-tl-unx.tar.gz
 #----------------------------------------------------
 cp *.txt $baseyear
 cp nanotex.profile.linux $baseyear
-cp TLMGRbase.desktop $baseyear
 cp nanotex-icon-$year.svg $baseyear
 cp nanotex-icon.svg $base
 #----------------------------------------------------
@@ -89,10 +72,8 @@ cd $baseyear
 #----------------------------------------------------
 #mkdir user
 #mkdir share
-zenq --ok-label="Full" --cancel-label="Basic (recommended!)" --text="Do you want to perform a basic or full installation?\n\n\
-A full installation will require several GB, while the basic installation will be around 300 MB.\n\n\n\
-I recommend the basic installation because you can always add missing packages later."
-if [ $? = 0 ]  ;then
+read -p "Do you want to perform a basic or full installation? A full installation will require several GB, while the basic installation will be around 300 MB. I recommend the basic installation because you can always add missing packages later.? Press 'f' for 'FULL'; press 'c' for 'CUSTOM'." FULLCUSTOM
+if [ "$FULLCUSTOM" = "f" ]; then
 #####################################################
 #
 #              INSTALLATION FULL
@@ -137,8 +118,8 @@ tlmgr install latex-bin luahbtex tlshell $(cat pkgs-all.txt | tr '\n' ' ')
 #----------------------------------------------------
 # Installing suftesi
 #----------------------------------------------------
-zenq --text="Do you want to install the 'suftesi' class and all its dependecies (documentation included)?"
-if [ $? = 0 ]  ;then
+read -p "Do you want to install the 'suftesi' class and all its dependecies (documentation included)? Press 'y' for 'YES'; press 'n' for 'NO'." SUFTESI
+if [ "$SUFTESI" = "y" ]; then
 echo "# Installing suftesi class. This process can take several minutes depending on your connection speed."
 tlmgr install --with-doc $(cat pkgs-suftesi.txt | tr '\n' ' ')
 fi
@@ -161,49 +142,20 @@ rm install-tl
 echo "# Path settings."
 TEXT="PATH=$baseyear/bin/$plat:\$PATH"
 if [ -f $HOME/.bash_aliases ]; then
-zenq --text="The .bash_aliases file in your Home will be edited.\n\n\
-All lines containing the string '$base' will be removed and replaced with the current installation path:\n\
-PATH=$baseyear/bin/$plat:\$PATH\n\n\
-Do you want to procede?\n\n\n\
-If you think you don't have to use the Terminal to compile LaTeX files you can skip this step. You will need to set the correct path for executables directly in the editor:\n\
-$baseyear/bin/$plat"
+read -p "The .bash_aliases file in your Home will be edited. All lines containing the string '$base' will be removed and replaced with the current installation path: PATH=$baseyear/bin/$plat:\$PATH. Do you want to procede? Press 'y' for 'YES'; press 'n' for 'NO'. If you think you don't have to use the Terminal to compile LaTeX files you can skip this step. You will need to set the correct path for executables directly in the editor: $baseyear/bin/$plat." SETPATH
 # If 'YES':
-  if [ $? = 0 ]  ;then
+if [ "$SETPATH" = "y" ]; then
 #sed -i "\|$base|d" ~/.profile
 #echo "$TEXT" >> ~/.profile
 sed -i "\|$base/202*[0-9]/bin|d" ~/.bash_aliases
 echo "$TEXT" >> ~/.bash_aliases
 # If 'NO':
 else
-zeni --text="If you want to use 'tlmgr' and other commands provided by TeX Live remember to set the correct path for each session, with this command:\n\PATH=\"\$baseyear/bin/x86_64-linux:\$PATH\""
+echo "If you want to use 'tlmgr' and other commands provided by TeX Live remember to set the correct path for each session, with this command:\n\PATH=\"\$baseyear/bin/x86_64-linux:\$PATH\""
 fi
 else
 echo "$TEXT" >> ~/.bash_aliases
 fi
-#####################################################
-#
-#             CREATE TLMGR LAUNCHER
-#
-#####################################################
-File=/etc/lsb-release
-if grep -q Mint "$File"; then
-echo "# Creating a TeX Live Manager launcher"
-zenq --text="You are installing on Linux Mint. A TeX Live Manager launcher can be created in the $baseyear folder. Do you want to proceed?"
-  if [ $? = 0 ]  ;then
-perl -i -pe "s{<BASE>}{$baseyear}" TLMGRbase.desktop
-perl -i -pe "s{TLMGRbase}{TeX Live Manager}" TLMGRbase.desktop
-fi
-fi
-#####################################################
-#
-#                SET FOLDER ICON
-#
-#####################################################
-echo "# Setting the fodler icon"
-cd ..
-gio set -t string $year metadata::custom-icon file://$baseyear/nanotex-icon-$year.svg
-cd ..
-gio set -t string $base metadata::custom-icon file://$base/nanotex-icon.svg
 
 cd $base
 if [ $base = `pwd` ]]; then
@@ -220,12 +172,5 @@ fi
 
 echo "# Finishing installation"
 echo "# nanoTeX $year successfully installed!"
-
-#) |
-#zenity --progress \
-#  --title="nanoTeX $year installation" \
-#  --pulsate \
-#  --width=500 --height=300
-
 
 
