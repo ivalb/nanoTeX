@@ -25,7 +25,7 @@ baseyear=$base/$year
 if [ -d "$baseyear" ]; then
 zenq --text="A folder '$baseyear already exists.\n\
 You are probably attempting to reinstall nanoTeX $year.\n\
-By pressing 'YES' the folder will be overwritten and all its contents will be lost. By clicking on "NO" the installation process will be terminated.\n\n\
+By pressing 'YES' the folder will be overwritten and all its contents will be lost. By clicking on 'NO' the installation process will be terminated.\n\n\
 Do you want to procede?"
 # If 'YES':
   if [ $? = 0 ]  ;then
