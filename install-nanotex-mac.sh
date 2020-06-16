@@ -9,9 +9,29 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+perl -i -pe "s{<BASE>}{$baseyear}" nanotex.profile.linux
+perl -i -pe "s{autobackup 1}{autobackup 0}" nanotex.profile.linux
+perl -i -pe "s{srcfiles 1}{srcfiles 0}" nanotex.profile.linux
+perl -i -pe "s{scheme-full}{scheme-infraonly}" nanotex.profile.linux
+perl -i -pe "s{<BASEU>}{$base}" nanotex.profile.linux
+
+#sed -i '' 's/<BASE>/$baseyear/g' nanotex.profile.linux
+#sed -i '' 's/<BASEU>/$base/g' nanotex.profile.linux
+#sed -i '' 's/srcfiles 1/srcfiles 0/g' nanotex.profile.linux
+#sed -i '' 's/autobackup 1/autobackup 0/g' nanotex.profile.linux
+#sed -i '' 's/srcfiles 1/srcfiles 0/g' nanotex.profile.linux
+#sed -i '' 's/scheme-full/scheme-infraonly/g' nanotex.profile.linux
+
+exit
+
 #-------------------------------------------------------------------------------
 year=2020
-read -p "Where do you want to install nanoTeX? Press 'c' for 'current directory'; press 'h' for 'Home directory'." INSTDIR
+read -p "
+# ---- STEP 1 ----------------------------------------------
+# Where do you want to install nanoTeX? 
+# Press [c]+[enter] to install in the current directory. 
+# Press [h]+[enter] for home directory." INSTDIR
+# -----------------------------------------------------------
 if [ "$INSTDIR" = "c" ]; then
   base=`pwd`
 else
@@ -20,18 +40,32 @@ fi
 baseyear=$base/$year
 
 if [ -d "$baseyear" ]; then
-read -p "A folder '$baseyear already exists. You are probably attempting to reinstall nanoTeX $year. By pressing 'y' the folder will be overwritten and all its contents will be lost. By pressin 'n' the installation process will be terminated. Do you want to procede?" CONTROLDIR
-if [ "$CONTROLDIR" = "y" ]; then
+read -p "
+# ---- STEP 2 ----------------------------------------------
+# A folder '$baseyear' already exists. 
+# You are probably attempting to reinstall nanoTeX $year. 
+# By pressing [y]+[enter] the folder will be overwritten 
+# and all its contents will be lost. 
+# By pressin [n]+[enter] the installation process will be terminated. 
+# Do you want to procede?" CONTROLDIR
+# -----------------------------------------------------------
 # If 'YES':
+if [ "$CONTROLDIR" = "y" ]; then
     rm -r $baseyear
     mkdir -p $baseyear
 # If 'NO':
   else
-echo "You have chosen to exit the installation.\n\n\n\n\ GOODBYE!!!"
+echo "
+# You have chosen to exit the installation.
+# ************************
+# *****              *****
+# *****   GOODBYE!   *****
+# *****              *****
+# ************************"
   exit
 fi
 else
-# If ~/nanotex/$year does not exist:
+# If $baseyear does not exist:
   mkdir -p $baseyear
 fi
   mkdir $base/texmf
@@ -50,7 +84,16 @@ cd $baseyear
 #----------------------------------------------------
 # INSTALLATION 
 #----------------------------------------------------
-read -p "Do you want to perform a basic or full installation? A full installation will require several GB, while the basic installation will be around 300 MB. I recommend the basic installation because you can always add missing packages later.? Press 'f' for 'FULL'; press 'c' for 'CUSTOM'." FULLCUSTOM
+read -p "
+# ---- STEP 3 ----------------------------------------------
+# Do you want to perform a basic or full installation? 
+# A full installation will require several GB, 
+# while the basic installation will be around 300 MB. 
+# I recommend the basic installation because 
+# you can always add missing packages later. 
+# Press [f]+[enter] for FULL.
+# Press [c]+[enter] for CUSTOM." FULLCUSTOM
+# -----------------------------------------------------------
 if [ "$FULLCUSTOM" = "f" ]; then
 # FULL
 #sed -i '' 's/<BASE>/$baseyear/g' nanotex.profile.linux
@@ -66,7 +109,6 @@ else
 # CUSTOM
 #sed -i '' 's/<BASE>/$baseyear/g' nanotex.profile.linux
 #sed -i '' 's/<BASEU>/$base/g' nanotex.profile.linux
-#sed -i '' 's/srcfiles 1/srcfiles 0/g' nanotex.profile.linux
 #sed -i '' 's/autobackup 1/autobackup 0/g' nanotex.profile.linux
 #sed -i '' 's/srcfiles 1/srcfiles 0/g' nanotex.profile.linux
 #sed -i '' 's/scheme-full/scheme-infraonly/g' nanotex.profile.linux
@@ -90,7 +132,13 @@ tlmgr install latex-bin luahbtex tlshell $(cat pkgs-all.txt | tr '\n' ' ')
 #----------------------------------------------------
 # Installing suftesi
 #----------------------------------------------------
-read -p "Do you want to install the 'suftesi' class and all its dependecies (documentation included)? Press 'y' for 'YES'; press 'n' for 'NO'." SUFTESI
+read -p "
+# ---- STEP 4 ----------------------------------------------
+# Do you want to install the 'suftesi' class 
+# and all its dependecies (documentation included)? 
+# Press [y]+[enter] for YES.
+# Press [n]+[enter] for NO." SUFTESI
+# -----------------------------------------------------------
 if [ "$SUFTESI" = "y" ]; then
 echo "# Installing suftesi class. This process can take several minutes depending on your connection speed."
 tlmgr install --with-doc $(cat pkgs-suftesi.txt | tr '\n' ' ')
@@ -112,7 +160,20 @@ rm install-tl
 echo "# Path settings."
 TEXT="PATH=$baseyear/bin/$plat:\$PATH"
 if [ -f $HOME/.bash_aliases ]; then
-read -p "The .bash_aliases file in your Home will be edited. All lines containing the string '$base' will be removed and replaced with the current installation path: PATH=$baseyear/bin/$plat:\$PATH. Do you want to procede? Press 'y' for 'YES'; press 'n' for 'NO'. If you think you don't have to use the Terminal to compile LaTeX files you can skip this step. You will need to set the correct path for executables directly in the editor: $baseyear/bin/$plat." SETPATH
+read -p "
+# ---- STEP 5 ----------------------------------------------
+# The .bash_aliases file in your Home will be edited. 
+# All lines containing the string '$base' will be removed 
+# and replaced with the current installation path: 
+# PATH=$baseyear/bin/$plat:\$PATH. 
+# Do you want to procede? 
+# Press [y]+[enter] for YES. 
+# Press [n]+[enter] for NO. 
+# If you think you don't have to use the Terminal 
+# to compile LaTeX files you can skip this step. 
+# You will need to set the correct path for executables 
+# directly in the editor: $baseyear/bin/$plat." SETPATH
+# -----------------------------------------------------------
 # If 'YES':
 if [ "$SETPATH" = "y" ]; then
 #sed -i "\|$base|d" ~/.profile

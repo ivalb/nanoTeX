@@ -27,12 +27,12 @@ zenq --text="A folder '$baseyear already exists.\n\
 You are probably attempting to reinstall nanoTeX $year.\n\
 By pressing 'YES' the folder will be overwritten and all its contents will be lost. By clicking on 'NO' the installation process will be terminated.\n\n\
 Do you want to procede?"
-# If 'YES':
   if [ $? = 0 ]  ;then
+# If 'YES':
     rm -r $baseyear
     mkdir -p $baseyear
-# If 'NO':
   else
+# If 'NO':
 zeni --text="You have chosen to exit the installation.\n\n\n\n\ GOODBYE!!!"
   exit
 fi
@@ -81,7 +81,6 @@ else
 # Custom
 #----------------------------------------------------
 perl -i -pe "s{<BASE>}{$baseyear}" nanotex.profile.linux
-perl -i -pe "s{srcfiles 1}{srcfiles 0}" nanotex.profile.linux
 perl -i -pe "s{autobackup 1}{autobackup 0}" nanotex.profile.linux
 perl -i -pe "s{srcfiles 1}{srcfiles 0}" nanotex.profile.linux
 perl -i -pe "s{scheme-full}{scheme-infraonly}" nanotex.profile.linux
@@ -128,14 +127,14 @@ PATH=$baseyear/bin/$plat:\$PATH\n\n\
 Do you want to procede?\n\n\n\
 If you think you don't have to use the Terminal to compile LaTeX files you can skip this step. You will need to set the correct path for executables directly in the editor:\n\
 $baseyear/bin/$plat"
-# If 'YES':
   if [ $? = 0 ]  ;then
+# If 'YES':
 #sed -i "\|$base|d" ~/.profile
 #echo "$TEXT" >> ~/.profile
 sed -i "\|$base/202*[0-9]/bin|d" ~/.bash_aliases
 echo "$TEXT" >> ~/.bash_aliases
-# If 'NO':
 else
+# If 'NO':
 zeni --text="If you want to use 'tlmgr' and other commands provided by TeX Live remember to set the correct path for each session, with this command:\n\PATH=\"\$baseyear/bin/x86_64-linux:\$PATH\""
 fi
 else
