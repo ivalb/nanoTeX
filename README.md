@@ -9,7 +9,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OU
 
 <h2>Acknowledgments</h2>
 
-Thanks to Luigi Scarso and Massimiliano Dominici for their availability. In particular, I would like to remind you that the initial installer code for Linux was written by Luigi Scarso.  I would also like to express my special thanks to Tommaso Gordini, who has tested both installers, and particularly the one for Windows.
+Thanks to Luigi Scarso and Massimiliano Dominici for their availability. In particular, I would like to remind you that the initial installer code for Linux was written by Luigi Scarso.  I would also like to express my special thanks to Tommaso Gordini, who has tested the installers, and particularly those for Windows and Mac.
 
 Installation (Linux)
 -------------------------------------
@@ -24,7 +24,23 @@ Installation (Linux)
     
       sh install-nanotex.sh
 
-(4) Follow the instructions and make your choice!    
+(4) Follow the instructions and make your choice!
+
+Installation (Mac)
+-------------------------------------
+
+(1) Download the repository from GitHub. Unzip the folder and open a Terminal window.
+
+(2) Move inside the downloaded folder (You can rename the folder if you prefer):
+
+      cd path/to/nanoTeX-Master
+
+(3) Run the installer:
+    
+      sh install-nanotex-mac.sh
+
+(4) Follow the instructions and make your choice!
+
 
 <h5>Basic installation</h5>
 
