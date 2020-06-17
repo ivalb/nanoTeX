@@ -11,6 +11,20 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OU
 
 Thanks to Luigi Scarso and Massimiliano Dominici for their availability. In particular, I would like to remind you that the initial installer code for Linux was written by Luigi Scarso.  I would also like to express my special thanks to Tommaso Gordini, who has tested the installers, and particularly those for Windows and Mac.
 
+<h2>Kind of installations</h2>
+
+<h5>Basic installation</h5>
+
+In the case of the basic installation, a list of packages will be installed which are considered essential for most users, omitting the sources but including the documentation. For the packages installed subsequently, also the documentation is omitted by default. This choice can be changed directly in the TLShell options or from the command line with:
+
+    tlmgr option docfiles 0
+
+<h5>Full installation</h5>
+
+In the case of a full installation, everything will be installed, including documentation and package sources (also for future package installations). This installation, with the exception of the installation folder, is identical to the default one provided by TeX Live. 
+
+
+
 Installation (Linux)
 -------------------------------------
 
@@ -40,18 +54,6 @@ Installation (Mac)
       sh install-nanotex-mac.sh
 
 (4) Follow the instructions and make your choice!
-
-
-<h5>Basic installation</h5>
-
-In the case of the basic installation, a list of packages will be installed which are considered essential for most users, omitting the sources but including the documentation. For the packages installed subsequently, also the documentation is omitted by default. This choice can be changed directly in the TLShell options or from the command line with:
-
-    tlmgr option docfiles 0
-
-<h5>Full installation</h5>
-
-In the case of a full installation, everything will be installed, including documentation and package sources (also for future package installations). This installation, with the exception of the installation folder, is identical to the default one provided by TeX Live. 
-
 
 Installation instructions (Windows) !Note that this installer is not optimized at all, even if it seems to work!
 -------------------------------------
