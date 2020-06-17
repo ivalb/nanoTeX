@@ -13,7 +13,6 @@ epigraph
 nextpage
 lettrine
 kantlipsum
-minipf
 epstopdf-pkg
 upquote
 biblatex-philosophy
