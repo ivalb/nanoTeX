@@ -24,7 +24,6 @@ else
   base=$HOME/nanotex
 fi
 baseyear=$base/$year
-exit
 
 if [ -d "$baseyear" ]; then
 read -p "
@@ -99,7 +98,7 @@ export PATH=$baseyear/bin/$plat:$PATH
 else
 # CUSTOM
 perl -i -pe "s{<BASE>}{$baseyear}" nanotex.profile.linux
-perl -i -pe "s{srcfiles 1}{srcfiles 0}" nanotex.profile.linux
+
 perl -i -pe "s{autobackup 1}{autobackup 0}" nanotex.profile.linux
 perl -i -pe "s{srcfiles 1}{srcfiles 0}" nanotex.profile.linux
 perl -i -pe "s{scheme-full}{scheme-infraonly}" nanotex.profile.linux
@@ -115,7 +114,7 @@ export PATH=$baseyear/bin/$plat:$PATH
 #----------------------------------------------------
 # Install a minimal set of packages
 #----------------------------------------------------
-cat pkgs-minimal.txt pkgs-languages.txt pkgs-classes.txt pkgs-mathematics.txt pkgs-fonts > pkgs-all.txt
+cat pkgs-minimal.txt pkgs-languages.txt pkgs-classes.txt pkgs-mathematics.txt pkgs-fonts.txt > pkgs-all.txt
 echo ""
 echo "# Installing a minimal set of packages." 
 echo "# This process can take several minutes" 
@@ -146,57 +145,15 @@ fi
 #----------------------------------------------------
 # Remove auxiliary files:
 #----------------------------------------------------
-rm pkgs-*.txt 
+rm pkgs-*.txt
 rm nanotex.profile*
 rm install-tl
-#----------------------------------------------------
-# Path settings
-#----------------------------------------------------
-echo ""
-echo "# Path settings."
-TEXT="PATH=$baseyear/bin/$plat:\$PATH"
-if [ -f $HOME/.bash_aliases ]; then
-read -p "
-# ---- STEP 5 ----------------------------------------------
-| The .bash_aliases file in your Home will be edited. 
-| All lines containing the string '$base' will be removed 
-| and replaced with the current installation path: 
-| PATH=$baseyear/bin/$plat:\$PATH. 
-| Do you want to procede? 
-| Press [y]+[enter] for YES. 
-| Press [n]+[enter] for NO. 
-| If you think you don't have to use the Terminal 
-| to compile LaTeX files you can skip this step. 
-| You will need to set the correct path for executables 
-| directly in the editor: $baseyear/bin/$plat." SETPATH
-# -----------------------------------------------------------
-# If 'YES':
-if [ "$SETPATH" = "y" ]; then
-#sed -i "\|$base|d" ~/.profile
-#echo "$TEXT" >> ~/.profile
-sed -i "\|$base/202*[0-9]/bin|d" ~/.bash_aliases
-echo "$TEXT" >> ~/.bash_aliases
-# If 'NO':
-else
-echo ""
-echo "# If you want to use 'tlmgr' and other commands" 
-echo "# provided by TeX Live remember to set the correct"
-echo "# path for each session, with this command:"
-echo "# \n\PATH=\"\$baseyear/bin/x86_64-linux:\$PATH\""
-fi
-else
-echo "$TEXT" >> ~/.bash_aliases
-fi
 
 cd $base
-if [ $base = `pwd` ]]; then
-rm -f nanotex-icon.ico
-rm -f Desktop.ini
+if [ $base = `pwd` ]; then
 rm -f *.txt
 rm -f nanotex.profile*
 rm -f install-*
-rm -f wget-log
-rm -f TLMGRbase.desktop
 rm -rf .git
 rm -f .gitignore
 fi
