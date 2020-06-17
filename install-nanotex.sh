@@ -78,7 +78,7 @@ plat=`./install-tl -print-platform`
 export PATH=$baseyear/bin/$plat:$PATH
 else
 #----------------------------------------------------
-# Custom
+# Basic
 #----------------------------------------------------
 perl -i -pe "s{<BASE>}{$baseyear}" nanotex.profile.linux
 perl -i -pe "s{autobackup 1}{autobackup 0}" nanotex.profile.linux

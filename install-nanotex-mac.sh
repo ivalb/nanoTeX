@@ -81,9 +81,9 @@ read -p "
 | I recommend the basic installation because 
 | you can always add missing packages later. 
 | Press [f]+[enter] for FULL.
-| Press [c]+[enter] for CUSTOM." FULLCUSTOM
+| Press [b]+[enter] for BASIC." FULLBASIC
 # -----------------------------------------------------------
-if [ "$FULLCUSTOM" = "f" ]; then
+if [ "$FULLBASIC" = "f" ]; then
 # FULL
 perl -i -pe "s{<BASE>}{$baseyear}" nanotex.profile.linux
 perl -i -pe "s{<BASEU>}{$base}" nanotex.profile.linux
@@ -96,7 +96,7 @@ plat=`./install-tl -print-platform`
 ./install-tl -no-gui -profile=./nanotex.profile
 export PATH=$baseyear/bin/$plat:$PATH
 else
-# CUSTOM
+# BASIC
 perl -i -pe "s{<BASE>}{$baseyear}" nanotex.profile.linux
 
 perl -i -pe "s{autobackup 1}{autobackup 0}" nanotex.profile.linux
