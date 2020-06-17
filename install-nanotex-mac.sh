@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# This is file install-nanotex.sh, version 0.1 beta 2020-05-26
+# This is file install-nanotex-mac.sh, version 0.1 beta 2020-05-26
 #
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -9,28 +9,14 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-perl -i -pe "s{<BASE>}{$baseyear}" nanotex.profile.linux
-perl -i -pe "s{autobackup 1}{autobackup 0}" nanotex.profile.linux
-perl -i -pe "s{srcfiles 1}{srcfiles 0}" nanotex.profile.linux
-perl -i -pe "s{scheme-full}{scheme-infraonly}" nanotex.profile.linux
-perl -i -pe "s{<BASEU>}{$base}" nanotex.profile.linux
-
-#sed -i '' 's/<BASE>/$baseyear/g' nanotex.profile.linux
-#sed -i '' 's/<BASEU>/$base/g' nanotex.profile.linux
-#sed -i '' 's/srcfiles 1/srcfiles 0/g' nanotex.profile.linux
-#sed -i '' 's/autobackup 1/autobackup 0/g' nanotex.profile.linux
-#sed -i '' 's/srcfiles 1/srcfiles 0/g' nanotex.profile.linux
-#sed -i '' 's/scheme-full/scheme-infraonly/g' nanotex.profile.linux
-
-exit
-
 #-------------------------------------------------------------------------------
+
 year=2020
 read -p "
 # ---- STEP 1 ----------------------------------------------
-# Where do you want to install nanoTeX? 
-# Press [c]+[enter] to install in the current directory. 
-# Press [h]+[enter] for home directory." INSTDIR
+| Where do you want to install nanoTeX? 
+| Press [c]+[enter] to install in the current directory. 
+| Press [h]+[enter] for home directory." INSTDIR
 # -----------------------------------------------------------
 if [ "$INSTDIR" = "c" ]; then
   base=`pwd`
@@ -38,16 +24,17 @@ else
   base=$HOME/nanotex
 fi
 baseyear=$base/$year
+exit
 
 if [ -d "$baseyear" ]; then
 read -p "
 # ---- STEP 2 ----------------------------------------------
-# A folder '$baseyear' already exists. 
-# You are probably attempting to reinstall nanoTeX $year. 
-# By pressing [y]+[enter] the folder will be overwritten 
-# and all its contents will be lost. 
-# By pressin [n]+[enter] the installation process will be terminated. 
-# Do you want to procede?" CONTROLDIR
+| A folder '$baseyear' already exists. 
+| You are probably attempting to reinstall nanoTeX $year. 
+| By pressing [y]+[enter] the folder will be overwritten 
+| and all its contents will be lost. 
+| By pressing [n]+[enter] the installation process will be terminated. 
+| Do you want to procede?" CONTROLDIR
 # -----------------------------------------------------------
 # If 'YES':
 if [ "$CONTROLDIR" = "y" ]; then
@@ -57,11 +44,11 @@ if [ "$CONTROLDIR" = "y" ]; then
   else
 echo "
 # You have chosen to exit the installation.
-# ************************
-# *****              *****
-# *****   GOODBYE!   *****
-# *****              *****
-# ************************"
+| ************************
+| *****              *****
+| *****   GOODBYE!   *****
+| *****              *****
+| ************************"
   exit
 fi
 else
@@ -72,9 +59,12 @@ fi
 #----------------------------------------------------
 # Download installer
 #----------------------------------------------------
+echo ""
+echo "# ---- INSTALLATION STARTS ---------------------------"
 echo "# Downloading the installer from a CTAN mirror..."
-wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
+curl -LO http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
 tar -C $baseyear --strip-components=1 -xzf install-tl-unx.tar.gz
+#tar -zxf install-tl-unx.tar.gz -C $baseyear
 #----------------------------------------------------
 # Setup folder
 #----------------------------------------------------
@@ -86,32 +76,28 @@ cd $baseyear
 #----------------------------------------------------
 read -p "
 # ---- STEP 3 ----------------------------------------------
-# Do you want to perform a basic or full installation? 
-# A full installation will require several GB, 
-# while the basic installation will be around 300 MB. 
-# I recommend the basic installation because 
-# you can always add missing packages later. 
-# Press [f]+[enter] for FULL.
-# Press [c]+[enter] for CUSTOM." FULLCUSTOM
+| Do you want to perform a basic or full installation? 
+| A full installation will require several GB, 
+| while the basic installation will be around 300 MB. 
+| I recommend the basic installation because 
+| you can always add missing packages later. 
+| Press [f]+[enter] for FULL.
+| Press [c]+[enter] for CUSTOM." FULLCUSTOM
 # -----------------------------------------------------------
 if [ "$FULLCUSTOM" = "f" ]; then
 # FULL
-#sed -i '' 's/<BASE>/$baseyear/g' nanotex.profile.linux
-#sed -i '' 's/<BASEU>/$base/g' nanotex.profile.linux
 perl -i -pe "s{<BASE>}{$baseyear}" nanotex.profile.linux
 perl -i -pe "s{<BASEU>}{$base}" nanotex.profile.linux
 mv nanotex.profile.linux nanotex.profile
-echo "# Installing TeX Live full. This process can take several minutes depending on your connection speed."
+echo ""
+echo "# Installing TeX Live full."
+echo "# This process can take several minutes" 
+echo "# depending on your connection speed."
 plat=`./install-tl -print-platform`
 ./install-tl -no-gui -profile=./nanotex.profile
 export PATH=$baseyear/bin/$plat:$PATH
 else
 # CUSTOM
-#sed -i '' 's/<BASE>/$baseyear/g' nanotex.profile.linux
-#sed -i '' 's/<BASEU>/$base/g' nanotex.profile.linux
-#sed -i '' 's/autobackup 1/autobackup 0/g' nanotex.profile.linux
-#sed -i '' 's/srcfiles 1/srcfiles 0/g' nanotex.profile.linux
-#sed -i '' 's/scheme-full/scheme-infraonly/g' nanotex.profile.linux
 perl -i -pe "s{<BASE>}{$baseyear}" nanotex.profile.linux
 perl -i -pe "s{srcfiles 1}{srcfiles 0}" nanotex.profile.linux
 perl -i -pe "s{autobackup 1}{autobackup 0}" nanotex.profile.linux
@@ -119,7 +105,10 @@ perl -i -pe "s{srcfiles 1}{srcfiles 0}" nanotex.profile.linux
 perl -i -pe "s{scheme-full}{scheme-infraonly}" nanotex.profile.linux
 perl -i -pe "s{<BASEU>}{$base}" nanotex.profile.linux
 mv nanotex.profile.linux nanotex.profile
-echo "# Installing TeX Live custom. This process can take several minutes depending on your connection speed."
+echo ""
+echo "# Installing TeX Live custom."
+echo "# This process can take several minutes" 
+echo "# depending on your connection speed."
 plat=`./install-tl -print-platform`
 ./install-tl -no-gui -profile=./nanotex.profile
 export PATH=$baseyear/bin/$plat:$PATH
@@ -127,20 +116,26 @@ export PATH=$baseyear/bin/$plat:$PATH
 # Install a minimal set of packages
 #----------------------------------------------------
 cat pkgs-minimal.txt pkgs-languages.txt pkgs-classes.txt pkgs-mathematics.txt pkgs-fonts > pkgs-all.txt
-echo "# Installing a minimal set of packages. This process can take several minutes depending on your connection speed."
+echo ""
+echo "# Installing a minimal set of packages." 
+echo "# This process can take several minutes" 
+echo "# depending on your connection speed."
 tlmgr install latex-bin luahbtex tlshell $(cat pkgs-all.txt | tr '\n' ' ')
 #----------------------------------------------------
 # Installing suftesi
 #----------------------------------------------------
 read -p "
 # ---- STEP 4 ----------------------------------------------
-# Do you want to install the 'suftesi' class 
-# and all its dependecies (documentation included)? 
-# Press [y]+[enter] for YES.
-# Press [n]+[enter] for NO." SUFTESI
+| Do you want to install the 'suftesi' class 
+| and all its dependecies (documentation included)? 
+| Press [y]+[enter] for YES.
+| Press [n]+[enter] for NO." SUFTESI
 # -----------------------------------------------------------
 if [ "$SUFTESI" = "y" ]; then
-echo "# Installing suftesi class. This process can take several minutes depending on your connection speed."
+echo ""
+echo "# Installing suftesi class." 
+echo "# This process can take several minutes" 
+echo "# depending on your connection speed."
 tlmgr install --with-doc $(cat pkgs-suftesi.txt | tr '\n' ' ')
 fi
 #----------------------------------------------------
@@ -157,22 +152,23 @@ rm install-tl
 #----------------------------------------------------
 # Path settings
 #----------------------------------------------------
+echo ""
 echo "# Path settings."
 TEXT="PATH=$baseyear/bin/$plat:\$PATH"
 if [ -f $HOME/.bash_aliases ]; then
 read -p "
 # ---- STEP 5 ----------------------------------------------
-# The .bash_aliases file in your Home will be edited. 
-# All lines containing the string '$base' will be removed 
-# and replaced with the current installation path: 
-# PATH=$baseyear/bin/$plat:\$PATH. 
-# Do you want to procede? 
-# Press [y]+[enter] for YES. 
-# Press [n]+[enter] for NO. 
-# If you think you don't have to use the Terminal 
-# to compile LaTeX files you can skip this step. 
-# You will need to set the correct path for executables 
-# directly in the editor: $baseyear/bin/$plat." SETPATH
+| The .bash_aliases file in your Home will be edited. 
+| All lines containing the string '$base' will be removed 
+| and replaced with the current installation path: 
+| PATH=$baseyear/bin/$plat:\$PATH. 
+| Do you want to procede? 
+| Press [y]+[enter] for YES. 
+| Press [n]+[enter] for NO. 
+| If you think you don't have to use the Terminal 
+| to compile LaTeX files you can skip this step. 
+| You will need to set the correct path for executables 
+| directly in the editor: $baseyear/bin/$plat." SETPATH
 # -----------------------------------------------------------
 # If 'YES':
 if [ "$SETPATH" = "y" ]; then
@@ -182,7 +178,11 @@ sed -i "\|$base/202*[0-9]/bin|d" ~/.bash_aliases
 echo "$TEXT" >> ~/.bash_aliases
 # If 'NO':
 else
-echo "If you want to use 'tlmgr' and other commands provided by TeX Live remember to set the correct path for each session, with this command:\n\PATH=\"\$baseyear/bin/x86_64-linux:\$PATH\""
+echo ""
+echo "# If you want to use 'tlmgr' and other commands" 
+echo "# provided by TeX Live remember to set the correct"
+echo "# path for each session, with this command:"
+echo "# \n\PATH=\"\$baseyear/bin/x86_64-linux:\$PATH\""
 fi
 else
 echo "$TEXT" >> ~/.bash_aliases
@@ -201,7 +201,8 @@ rm -rf .git
 rm -f .gitignore
 fi
 
-echo "# Finishing installation"
-echo "# nanoTeX $year successfully installed!"
+echo ""
+echo "| Finishing installation"
+echo "| nanoTeX $year successfully installed!"
 
 
