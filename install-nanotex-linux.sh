@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# This is file install-nanotex.sh, version 0.1 beta 2020-05-26
+# This is file install-nanotex-linux.sh, version 0.1 beta 2020-05-26
 #
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -10,6 +10,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 #-------------------------------------------------------------------------------
+
 year=2020
 alias zenq='zenity --question --icon-name=info --width=500 --height=300 --title="nanoTeX $year Installation" --ok-label="YES" --cancel-label="NO"'
 alias zeni='zenity --info --width=500 --height=300 --title="nanoTeX $year Installation"'
@@ -176,5 +177,3 @@ fi
 
 echo "# Finishing installation"
 echo "# nanoTeX $year successfully installed!"
-
-

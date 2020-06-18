@@ -1,0 +1,21 @@
+#
+# If you want to use the nanoTeX installation, and its binaries,
+# you need to adapt the path, like:
+#
+#   export PATH=/home/ivan/Documenti/LaTeX/nanoTeX/nanoTeX-master/2020/bin/:$PATH
+#
+# You can also source the file setup-nanotex, like:
+#
+#   cd /home/ivan/Documenti/LaTeX/nanoTeX/nanoTeX-master
+#   source setup-nanotex
+#
+# If you run from an editor you can specify the full path to mtxrun:
+#
+#   /home/ivan/Documenti/LaTeX/nanoTeX/nanoTeX-master/2020/bin//tlmgr update --list
+#
+# The following settings were used:
+#
+#   installation directory  : /home/ivan/Documenti/LaTeX/nanoTeX/nanoTeX-master/2020
+#   platform                : 
+#
+PATH=/home/ivan/Documenti/LaTeX/nanoTeX/nanoTeX-master/2020/bin/:$PATH
