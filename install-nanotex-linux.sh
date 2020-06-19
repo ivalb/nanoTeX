@@ -10,7 +10,6 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 #-------------------------------------------------------------------------------
-
 year=2020
 alias zenq='zenity --question --icon-name=info --width=500 --height=300 --title="nanoTeX $year Installation" --ok-label="YES" --cancel-label="NO"'
 alias zeni='zenity --info --width=500 --height=300 --title="nanoTeX $year Installation"'

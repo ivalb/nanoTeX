@@ -64,3 +64,23 @@ Installation instructions (Windows) !Note that this installer is not optimized a
 
 (4) Follow the instructions and make your choice!
 
+
+Path setting
+-------------------------------------
+
+ If you want to use the nanoTeX installation,
+ and its binaries,
+ you need to adapt the path, like ("PLAT" is the platform name, for example "x86_64-linux"):
+
+      export PATH=/path/to/nanoTeX-master/2020/bin/"PLAT":$PATH
+
+ If you run from an editor you can specify the full path,
+ for example:
+
+      /path/to/nanoTeX-master/2020/bin//tlmgr update --list
+      /path/to/nanoTeX-master/2020/bin//pdflatex ...
+
+ The following settings were used:
+
+      installation directory  : /path/to/nanoTeX-master/2020
+      platform                : x86_64-linux/???

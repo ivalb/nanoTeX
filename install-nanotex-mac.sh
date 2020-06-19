@@ -18,9 +18,9 @@ read -p "
 | Press [h]+[enter] for home directory." INSTDIR
 # -----------------------------------------------------------
 if [ "$INSTDIR" = "c" ]; then
-  base=`pwd`
+base=`pwd`
 else
-  base=$HOME/nanotex
+base=$HOME/nanotex
 fi
 baseyear=$base/$year
 
@@ -215,12 +215,11 @@ echo "| you need to adapt the path, like:"
 echo "|"
 echo "|   export PATH=$baseyear/bin/$plat:\$PATH"
 echo "|"
-echo "| You can also source the file setup-nanotex, like:"
+echo "| If you run from an editor you can specify the full path,"
+echo "| for example:"
 echo "|"
-echo "|   cd $base"
-echo "|   source setup-nanotex"
-echo "|"
-echo "| If you run from an editor you can specify the full path:"
+echo "|   $baseyear/bin/$plat/tlmgr update --list"
+echo "|   $baseyear/bin/$plat/pdflatex ..."
 echo "|"
 echo "|   $baseyear/bin/$plat/tlmgr update --list"
 echo "|"
@@ -231,29 +230,28 @@ echo "|   platform                : $plat"
 echo "|"
 #----------------------------------------------------
 {
-echo "#"
-echo "# If you want to use the nanoTeX installation,"
-echo "# and its binaries,"
-echo "# you need to adapt the path, like:"
-echo "#"
-echo "#   export PATH=$baseyear/bin/$plat:\$PATH"
-echo "#"
-echo "# You can also source the file setup-nanotex, like:"
-echo "#"
-echo "#   cd $base"
-echo "#   source setup-nanotex"
-echo "#"
-echo "# If you run from an editor you can specify the full path:" 
-echo "#"
-echo "#   $baseyear/bin/$plat/tlmgr update --list"
-echo "#"
-echo "# The following settings were used:"
-echo "#"
-echo "#   installation directory  : $baseyear"
-echo "#   platform                : $plat"
-echo "#"
+echo "Path settings"
+echo "-------------------------------------"
+echo ""
+echo " If you want to use the nanoTeX installation,"
+echo " and its binaries,"
+echo " you need to adapt the path, like:"
+echo ""
+echo "      export PATH=$baseyear/bin/$plat:\$PATH"
+echo ""
+echo " If you run from an editor you can specify the full path," 
+echo " for example:"
+echo ""
+echo "      $baseyear/bin/$plat/tlmgr update --list"
+echo "      $baseyear/bin/$plat/pdflatex ..."
+echo ""
+echo " The following settings were used:"
+echo ""
+echo "      installation directory  : $baseyear"
+echo "      platform                : $plat"
+echo ""
 echo "PATH=$baseyear/bin/$plat:\$PATH"
-} > setup-nanotex
+} >> README.md
 
 
 
