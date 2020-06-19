@@ -62,7 +62,6 @@ echo "# ---- INSTALLATION STARTS ---------------------------"
 echo "# Downloading the installer from a CTAN mirror..."
 curl -LO http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
 tar -C $baseyear --strip-components=1 -xzf install-tl-unx.tar.gz
-#tar -zxf install-tl-unx.tar.gz -C $baseyear
 #----------------------------------------------------
 # Setup folder
 #----------------------------------------------------
@@ -81,22 +80,10 @@ read -p "
 | while the basic installation will be around 300 MB. 
 | I recommend the basic installation because 
 | you can always add missing packages later. 
-| Press [f]+[enter] for FULL.
-| Press [b]+[enter] for BASIC." FULLBASIC
+| Press [b]+[enter] for BASIC.
+| Press [f]+[enter] for FULL." FULLBASIC
 # -----------------------------------------------------------
-if [ "$FULLBASIC" = "f" ]; then
-# FULL
-perl -i -pe "s{<BASE>}{$baseyear}" nanotex.profile.linux
-perl -i -pe "s{<BASEU>}{$base}" nanotex.profile.linux
-mv nanotex.profile.linux nanotex.profile
-echo ""
-echo "# Installing TeX Live full."
-echo "# This process can take several minutes" 
-echo "# depending on your connection speed."
-plat=`./install-tl -print-platform`
-./install-tl -no-gui -profile=./nanotex.profile
-export PATH=$baseyear/bin/$plat:$PATH
-else
+if [ "$FULLBASIC" = "b" ]; then
 # BASIC
 perl -i -pe "s{<BASE>}{$baseyear}" nanotex.profile.linux
 perl -i -pe "s{autobackup 1}{autobackup 0}" nanotex.profile.linux
@@ -141,6 +128,18 @@ fi
 # No documentation for future package installations? 
 #----------------------------------------------------
 tlmgr option docfiles 0
+else
+# FULL
+perl -i -pe "s{<BASE>}{$baseyear}" nanotex.profile.linux
+perl -i -pe "s{<BASEU>}{$base}" nanotex.profile.linux
+mv nanotex.profile.linux nanotex.profile
+echo ""
+echo "# Installing TeX Live full."
+echo "# This process can take several minutes" 
+echo "# depending on your connection speed."
+plat=`./install-tl -print-platform`
+./install-tl -no-gui -profile=./nanotex.profile
+export PATH=$baseyear/bin/$plat:$PATH
 fi
 #----------------------------------------------------
 # Path setting
@@ -183,7 +182,6 @@ fi
 rm pkgs-*.txt
 rm nanotex.profile*
 rm install-tl
-
 cd $base
 if [ $base = `pwd` ]; then
 rm -f *.txt
@@ -192,14 +190,15 @@ rm -f install-*
 rm -rf .git
 rm -f .gitignore
 fi
-
+#----------------------------------------------------
 echo ""
 echo "| Finishing installation"
 echo "| nanoTeX $year successfully installed!"
-
+#----------------------------------------------------
 echo ""
-echo "# ---- SETUP NANOTEX ----------------------------------------------"
-echo "| If you want to use the nanoTeX installation, and its binaries,"
+echo "# ---- SETUP NANOTEX -------------------------------------"
+echo "| If you want to use the nanoTeX installation," 
+echo "| and its binaries,"
 echo "| you need to adapt the path, like:"
 echo "|"
 echo "|   export PATH=$baseyear/bin/$plat:\$PATH"
@@ -209,7 +208,7 @@ echo "|"
 echo "|   cd $base"
 echo "|   source setup-nanotex"
 echo "|"
-echo "| If you run from an editor you can specify the full path to mtxrun:"
+echo "| If you run from an editor you can specify the full path:"
 echo "|"
 echo "|   $baseyear/bin/$plat/tlmgr update --list"
 echo "|"
@@ -218,10 +217,11 @@ echo "|"
 echo "|   installation directory  : $baseyear"
 echo "|   platform                : $plat"
 echo "|"
-
+#----------------------------------------------------
 {
 echo "#"
-echo "# If you want to use the nanoTeX installation, and its binaries,"
+echo "# If you want to use the nanoTeX installation,"
+echo "# and its binaries,"
 echo "# you need to adapt the path, like:"
 echo "#"
 echo "#   export PATH=$baseyear/bin/$plat:\$PATH"
@@ -231,7 +231,7 @@ echo "#"
 echo "#   cd $base"
 echo "#   source setup-nanotex"
 echo "#"
-echo "# If you run from an editor you can specify the full path to mtxrun:"
+echo "# If you run from an editor you can specify the full path:" 
 echo "#"
 echo "#   $baseyear/bin/$plat/tlmgr update --list"
 echo "#"
