@@ -108,7 +108,13 @@ fi
 #----------------------------------------------------
 # No documentation for future package installations?
 #----------------------------------------------------
+zenq --text="Do you want to include the package documentation in future package installations?"
+if [ $? = 0 ]  ;then
+echo "# Setting 'tlmgr option docfiles 1'"
+else
+echo "# Setting 'tlmgr option docfiles 0'"
 tlmgr option docfiles 0
+fi
 fi
 #----------------------------------------------------
 # Remove auxiliary files:

@@ -125,9 +125,21 @@ echo "# depending on your connection speed."
 tlmgr install --with-doc $(cat pkgs-suftesi.txt | tr '\n' ' ')
 fi
 #----------------------------------------------------
-# No documentation for future package installations? 
+# No documentation for future package installations?
 #----------------------------------------------------
+read -p "
+# ---- STEP 5 ----------------------------------------------
+| Do you want to include the package documentation 
+| in future package installations?
+| Press [y]+[enter] for YES.
+| Press [n]+[enter] for NO." DOC
+# -----------------------------------------------------------
+if [ "$DOC" = "y" ]; then
+echo "# Setting 'tlmgr option docfiles 1'"
+else
+echo "# Setting 'tlmgr option docfiles 0'"
 tlmgr option docfiles 0
+fi
 else
 # FULL
 perl -i -pe "s{<BASE>}{$baseyear}" nanotex.profile.linux
@@ -145,7 +157,7 @@ fi
 # Path setting
 #----------------------------------------------------
 read -p "
-# ---- STEP 5 ----------------------------------------------
+# ---- STEP 6 ----------------------------------------------
 | The .bash_profile file in your Home will be edited.
 | If not existing it will be created.
 | All lines containing the string '$base' will be removed and 
