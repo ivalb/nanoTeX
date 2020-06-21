@@ -48,13 +48,17 @@ echo "# Downloading the installer from a CTAN mirror..."
 wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
 tar -C $baseyear --strip-components=1 -xzf install-tl-unx.tar.gz
 #----------------------------------------------------
-# Copy the auxiliary files in the installation directory:
+# Setup folder
 #----------------------------------------------------
+if [ $base = $HOME/nanotex ]; then
 cp *.txt $baseyear
 cp nanotex.profile.linux $baseyear
 cp TLMGRbase.desktop $baseyear
 cp nanotex-icon-$year.svg $baseyear
 cp nanotex-icon.svg $base
+cp README.md $base
+cp LICENSE.md $base
+fi
 #----------------------------------------------------
 # Move to the installation directory:
 #----------------------------------------------------
@@ -90,6 +94,11 @@ echo "# Installing TeX Live infrastructure. This process can take several minute
 plat=`./install-tl -print-platform`
 ./install-tl -no-gui -profile=./nanotex.profile
 export PATH=$baseyear/bin/$plat:$PATH
+#----------------------------------------------------
+# Update REAME.md
+#----------------------------------------------------
+perl -i -pe "s{<plat>}{$plat}" README.md
+perl -i -pe "s{<installdir>}{$baseyear}" README.md
 #----------------------------------------------------
 # Install a minimal set of packages
 #----------------------------------------------------
@@ -167,17 +176,23 @@ gio set -t string $year metadata::custom-icon file://$baseyear/nanotex-icon-$yea
 cd ..
 gio set -t string $base metadata::custom-icon file://$base/nanotex-icon.svg
 
+#----------------------------------------------------
+# Remove auxiliary files:
+#----------------------------------------------------
+rm pkgs-*.txt
+rm nanotex.profile*
+rm install-tl
 cd $base
 if [ $base = `pwd` ]; then
-rm -f nanotex-icon.ico
-rm -f Desktop.ini
 rm -f *.txt
 rm -f nanotex.profile*
 rm -f install-*
-rm -f wget-log
-rm -f TLMGRbase.desktop
 rm -rf .git
 rm -f .gitignore
+rm -f nanotex-icon.ico
+rm -f Desktop.ini
+rm -f wget-log
+rm -f TLMGRbase.desktop
 fi
 
 echo "# Finishing installation"

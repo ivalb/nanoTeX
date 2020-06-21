@@ -69,10 +69,9 @@ Path setting
 -------------------------------------
 
  If you want to use the nanoTeX installation,
- and its binaries,
- you need to adapt the path, like ("PLAT" is the platform name, for example "x86_64-linux"):
+ and its binaries, you need to adapt the path, like:
 
-      export PATH=/path/to/nanoTeX-master/2020/bin/"PLAT":$PATH
+      export PATH=<installdir>/bin/"<plat>":$PATH
 
  If you run from an editor you can specify the full path,
  for example:
@@ -82,5 +81,5 @@ Path setting
 
  The following settings were used:
 
-      installation directory  : /path/to/nanoTeX-master/2020
-      platform                : x86_64-linux/???
+      installation directory  : <installdir>
+      platform                : <plat>

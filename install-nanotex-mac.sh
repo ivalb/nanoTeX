@@ -55,7 +55,7 @@ else
 fi
   mkdir $base/texmf
 #----------------------------------------------------
-# Download installer
+# Download the installer from the nearest CTAN mirror: 
 #----------------------------------------------------
 echo ""
 echo "# ---- INSTALLATION STARTS ---------------------------"
@@ -65,11 +65,14 @@ tar -C $baseyear --strip-components=1 -xzf install-tl-unx.tar.gz
 #----------------------------------------------------
 # Setup folder
 #----------------------------------------------------
+if [ $base = $HOME/nanotex ]; then
 cp *.txt $baseyear
 cp nanotex.profile.linux $baseyear
-cd $baseyear
 cp nanotex-icon-$year.svg $baseyear
 cp nanotex-icon.svg $base
+cp README.md $base
+cp LICENSE.md $base
+fi
 #----------------------------------------------------
 # INSTALLATION 
 #----------------------------------------------------
@@ -98,6 +101,11 @@ echo "# depending on your connection speed."
 plat=`./install-tl -print-platform`
 ./install-tl -no-gui -profile=./nanotex.profile
 export PATH=$baseyear/bin/$plat:$PATH
+#----------------------------------------------------
+# Update REAME.md
+#----------------------------------------------------
+perl -i -pe "s{<plat>}{$plat}" README.md
+perl -i -pe "s{<installdir>}{$baseyear}" README.md
 #----------------------------------------------------
 # Install a minimal set of packages
 #----------------------------------------------------
@@ -201,6 +209,10 @@ rm -f nanotex.profile*
 rm -f install-*
 rm -rf .git
 rm -f .gitignore
+rm -f nanotex-icon.ico
+rm -f Desktop.ini
+rm -f wget-log
+rm -f TLMGRbase.desktop
 fi
 #----------------------------------------------------
 echo ""
@@ -228,30 +240,3 @@ echo "|"
 echo "|   installation directory  : $baseyear"
 echo "|   platform                : $plat"
 echo "|"
-#----------------------------------------------------
-{
-echo "Path settings"
-echo "-------------------------------------"
-echo ""
-echo " If you want to use the nanoTeX installation,"
-echo " and its binaries,"
-echo " you need to adapt the path, like:"
-echo ""
-echo "      export PATH=$baseyear/bin/$plat:\$PATH"
-echo ""
-echo " If you run from an editor you can specify the full path," 
-echo " for example:"
-echo ""
-echo "      $baseyear/bin/$plat/tlmgr update --list"
-echo "      $baseyear/bin/$plat/pdflatex ..."
-echo ""
-echo " The following settings were used:"
-echo ""
-echo "      installation directory  : $baseyear"
-echo "      platform                : $plat"
-echo ""
-echo "PATH=$baseyear/bin/$plat:\$PATH"
-} >> README.md
-
-
-
